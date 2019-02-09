@@ -1,0 +1,1759 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Aug 19, 2017 at 12:04 AM
+-- Server version: 5.6.34-log
+-- PHP Version: 7.1.5
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `bd_proyecto`
+--
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `filtro_aproximacion_academia` (IN `pnombre` VARCHAR(30) CHARSET utf8)  NO SQL
+SELECT *
+FROM tacademia
+WHERE nombre like CONCAT('%',pnombre,'%') or telefono like CONCAT('%',pnombre,'%')  or correo like CONCAT('%',pnombre,'%') or direccion like CONCAT('%',pnombre,'%')$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `filtro_aproximacion_lugares` (IN `pnombre` VARCHAR(25))  NO SQL
+SELECT *
+FROM tlugar
+WHERE nombre_lugar like CONCAT('%',pnombre,'%') or nombre_encargado like CONCAT('%',pnombre,'%') or telefono like CONCAT('%',pnombre,'%') or direccion like CONCAT('%',pnombre,'%') or correo like CONCAT('%',pnombre,'%')$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `filtro_exhibicion` (IN `pnombre` VARCHAR(30))  NO SQL
+SELECT *
+FROM texhibicion
+WHERE (texhibicion.estado=1) AND (nombre LIKE CONCAT('%',pnombre,'%') OR fecha_inicio like CONCAT('%',pnombre,'%') OR fecha_fin LIKE CONCAT('%',pnombre,'%') OR precio_entrada LIKE CONCAT('%',pnombre,'%') OR estado LIKE CONCAT('%',pnombre,'%') OR invitado LIKE CONCAT('%',pnombre,'%'))$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `filtro_torneo` (IN `pnombre` VARCHAR(30))  NO SQL
+SELECT *
+FROM ttorneo
+WHERE (ttorneo.estado = 1) AND(nombre like CONCAT('%',pnombre,'%') or fecha_inicio like CONCAT('%',pnombre,'%') or fecha_fin like CONCAT('%',pnombre,'%') or precio_entrada like CONCAT('%',pnombre,'%') or estado like CONCAT('%',pnombre,'%'))$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_aproximacion_nombre_Org` (IN `pnombre` VARCHAR(25))  NO SQL
+SELECT *
+FROM torganizacion
+WHERE nombre like CONCAT('%',pnombre,'%') or tipo like CONCAT('%',pnombre,'%') or telefono like CONCAT('%',pnombre,'%') or direccion like CONCAT('%',pnombre,'%') or correo like CONCAT('%',pnombre,'%')$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_lugar` ()  NO SQL
+SELECT *
+FROM tlugar$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_organizaciones` ()  NO SQL
+SELECT *
+FROM
+torganizacion$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificar_academia` (IN `pnombre` VARCHAR(30) CHARSET utf8, IN `pcorreo` VARCHAR(30) CHARSET utf8, IN `ptelefono` VARCHAR(15) CHARSET utf8, IN `pdireccion` VARCHAR(40) CHARSET utf8, IN `pid` INT)  NO SQL
+UPDATE tacademia
+SET nombre = pnombre,
+    correo = pcorreo,
+    telefono = ptelefono,
+    direccion = pdireccion
+    
+WHERE id_academia = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_activar_academia` (IN `pid` INT)  NO SQL
+UPDATE tacademia
+SET estado = 1
+WHERE id_academia = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_activar_alumno` (IN `pid` INT)  NO SQL
+UPDATE talumno
+SET estado = 1
+WHERE id_alumno = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_activar_asistente` (IN `pid` INT)  NO SQL
+UPDATE info_asistente
+SET estado = 1
+WHERE id_asistente = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_activar_lugar` (IN `pid` INT)  NO SQL
+UPDATE tlugar
+SET estado = 1
+WHERE id_lugar = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_activar_organizacion` (IN `pid` INT)  NO SQL
+UPDATE torganizacion
+SET estado = 1
+WHERE id_organizacion = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_activar_patrocinador` (IN `pid` INT)  NO SQL
+UPDATE tpatrocinador
+SET estado = 1
+WHERE id_patrocinador = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_activar_profesor` (IN `pid` INT)  NO SQL
+UPDATE tbprofesor
+SET estado = 1
+WHERE id_profesor = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_asignar_alumno_exhibicion` (IN `pid_exhibicion` INT, IN `pid_alumno` INT)  NO SQL
+INSERT INTO talumnosxexhibicion(
+    id_exhibicion,
+    id_alumno
+    )
+    VALUES(
+    pid_exhibicion,
+    pid_alumno
+    )$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_asignar_alumno_fogueo` (IN `pid_fogueo` INT, IN `pid_alumno` INT)  NO SQL
+INSERT INTO talumnosxfogueo(
+    id_fogueo,
+    id_alumno
+    )
+    VALUES(
+    pid_fogueo,
+    pid_alumno
+    )$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_asignar_alumno_torneo` (IN `pid_torneo` INT, IN `pid_alumno` INT)  NO SQL
+INSERT INTO talumnosxtorneo(
+    id_torneo,
+    id_alumno
+    )
+    VALUES(
+    pid_torneo,
+    pid_alumno
+    )$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_asignar_lugar_exhibicion` (IN `pid_exhibicion` INT, IN `pid_lugar` INT)  NO SQL
+INSERT INTO tlugaresxexhibicion(
+    id_exhibicion,
+    id_lugar
+)
+VALUES(
+    pid_exhibicion,
+    pid_lugar
+)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_asignar_lugar_fogueo` (IN `pid_fogueo` INT, IN `pid_lugar` INT)  NO SQL
+INSERT INTO tlugaresxfogueo(
+    id_fogueo,
+    id_lugar
+    )
+    VALUES(
+    pid_fogueo,
+    pid_lugar)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_asignar_lugar_torneo` (IN `pid_torneo` INT, IN `pid_lugar` INT)  NO SQL
+INSERT INTO tluagresxtoreno(
+    id_torneo,
+    id_lugar
+    )
+    VALUES
+    (
+    pid_torneo,
+    pid_lugar)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_asignar_organizacion_exhibicion` (IN `pid_exhibicion` INT, IN `pid_organizacion` INT)  NO SQL
+INSERT INTO torganizacionesxexhibicion(
+    id_exhibicion,
+    id_organizacion
+)
+VALUES(
+    pid_exhibicion,
+    pid_exhibicion
+)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_asignar_organizacion_fogueo` (IN `pid_fogueo` INT, IN `pid_organizacion` INT)  NO SQL
+INSERT INTO torganizacionesxfogueo(
+    id_fogueo,
+    id_organizacion)
+    VALUES
+    (
+    pid_fogueo,
+    pid_organizacion)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_asignar_organizacion_torneo` (IN `pid_torneo` INT, IN `pid_organizacion` INT)  NO SQL
+INSERT INTO torganizacionesxtorneo(
+    id_torneo,
+    id_organizacion)
+    VALUES
+    (
+    pid_torneo,
+    pid_organizacion)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_asignar_patrocinador_exhibicion` (IN `pid_exhibicion` INT, IN `pid_patrocinador` INT)  NO SQL
+INSERT INTO tpatrocinadoresxexhibicion(
+    id_exhibicion,
+    id_patrocinador
+    )
+    VALUES(
+        pid_exhibicion,
+        pid_patrocinador
+        )$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_asignar_patrocinador_fogueo` (IN `pid_fogueo` INT, IN `pid_patrocinador` INT)  NO SQL
+INSERT INTO tpatrocinadoresxfogueo(
+    id_fogueo,
+    id_patrocinador
+    )
+    VALUES
+    (
+    pid_fogueo,
+    pid_patrocinador)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_asignar_patrocinador_torneo` (IN `pid_torneo` INT, IN `pid_patrocinador` INT)  NO SQL
+INSERT INTO tpatrocinadoresxtorneo(
+    id_torneo,
+    id_patrocinador
+    )
+    VALUES
+    (
+    pid_torneo,
+    pid_patrocinador)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_cancelar_evento` (IN `pid` INT)  NO SQL
+UPDATE ttorneo
+SET
+ttorneo.estado = 0
+WHERE ttorneo.id_torneo = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_cancelar_exhibicion` (IN `pid` INT)  NO SQL
+UPDATE texhibicion
+SET texhibicion.estado = 0
+WHERE texhibicion.id_exhibicion = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_cancelar_fogueo` (IN `pid` INT)  NO SQL
+UPDATE tfogueo
+SET tfogueo.estado = 0
+WHERE tfogueo.id_fogueo = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_datos_administrador_por_id` (IN `pid` INT)  NO SQL
+SELECT *
+FROM tadministrador
+WHERE tadministrador.id_administrador = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_datos_alumno_por_id` (IN `pid` INT)  NO SQL
+SELECT * FROM talumno
+WHERE id_alumno = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_datos_exhibicion_por_id` (IN `pid` INT)  NO SQL
+SELECT *
+FROM texhibicion
+WHERE id_exhibicion = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_datos_fogueo_por_id` (IN `pid` INT)  NO SQL
+SELECT *
+FROM tfogueo
+WHERE id_fogueo = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_datos_lugar_por_id` (IN `pid` INT)  NO SQL
+SELECT *
+FROM tlugar
+WHERE id_lugar = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_datos_organizacion_por_id` (IN `pid` INT)  NO SQL
+SELECT * FROM torganizacion
+WHERE id_organizacion = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_datos_patrocinador_por_id` (IN `pid` INT)  NO SQL
+SELECT * FROM tpatrocinador
+WHERE id_patrocinador = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_datos_profesor_por_id` (IN `pid` INT)  NO SQL
+SELECT * FROM tbprofesor
+WHERE id_profesor = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_desactivar_academia` (IN `pid` INT)  NO SQL
+UPDATE tacademia
+SET estado = 0
+WHERE id_academia = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_desactivar_alumno` (IN `pid` INT)  NO SQL
+UPDATE talumno
+SET estado = 0
+WHERE id_alumno = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_desactivar_asistente` (IN `pid` INT)  NO SQL
+UPDATE info_asistente
+SET estado = 0
+WHERE id_asistente = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_desactivar_lugar` (IN `pid` INT)  NO SQL
+UPDATE tlugar
+SET estado = 0
+WHERE id_lugar = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_desactivar_organizacion` (IN `pid` INT)  NO SQL
+UPDATE torganizacion
+SET estado = 0
+WHERE id_organizacion = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_desactivar_patrocinador` (IN `pid` INT)  NO SQL
+UPDATE tpatrocinador
+SET estado = 0
+WHERE id_patrocinador = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_desactivar_profesor` (IN `pid` INT)  NO SQL
+UPDATE tbprofesor
+SET estado = 0
+WHERE id_profesor = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_eliminar_alumno_exhibicion` (IN `pid_exhibicion` INT, IN `pid_alumno` INT)  NO SQL
+DELETE FROM talumnosxexhibicion
+WHERE talumnosxexhibicion.id_exhibicion = pid_exhibicion AND
+talumnosxexhibicion.id_alumno = pid_alumno$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_eliminar_alumno_fogueo` (IN `pid_fogueo` INT, IN `pid_alumno` INT)  NO SQL
+DELETE FROM talumnosxfogueo
+WHERE talumnosxfogueo.id_fogueo = pid_fogueo AND talumnosxfogueo.id_alumno = pid_alumno$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_eliminar_alumno_torneo` (IN `pid_torneo` INT, IN `pid_alumno` INT)  NO SQL
+DELETE FROM talumnosxtorneo
+WHERE talumnosxtorneo.id_torneo = pid_torneo AND talumnosxtorneo.id_alumno = pid_alumno$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_eliminar_lugar_exhibicion` (IN `pid_exhibicion` INT, IN `pid_lugar` INT)  NO SQL
+DELETE FROM tlugaresxexhibicion
+WHERE tlugaresxexhibicion.id_exhibicion = pid_exhibicion AND 
+tlugaresxexhibicion.id_lugar = pid_lugar$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_eliminar_lugar_fogueo` (IN `pid_fogueo` INT, IN `pid_lugar` INT)  NO SQL
+DELETE FROM tlugaresxfogueo
+WHERE tlugaresxfogueo.id_fogueo = pid_fogueo AND tlugaresxfogueo.id_lugar = pid_lugar$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_eliminar_lugar_torneo` (IN `pid_torneo` INT, IN `pid_lugar` INT)  NO SQL
+DELETE FROM tluagresxtoreno
+WHERE tluagresxtoreno.id_torneo = pid_torneo AND tluagresxtoreno.id_lugar = pid_lugar$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_eliminar_organizacion_exhibicion` (IN `pid_exhibicion` INT, IN `pid_organizacion` INT)  NO SQL
+DELETE FROM torganizacionesxexhibicion
+WHERE torganizacionesxexhibicion.id_exhibicion = pid_exhibicion AND
+torganizacionesxexhibicion.id_organizacion = pid_organizacion$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_eliminar_organizacion_fogueo` (IN `pid_fogueo` INT, IN `pid_organizacion` INT)  NO SQL
+DELETE FROM torganizacionesxfogueo
+WHERE torganizacionesxfogueo.id_fogueo = pid_fogueo AND torganizacionesxfogueo.id_organizacion = pid_organizacion$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_eliminar_organizacion_torneo` (IN `pid_torneo` INT, IN `pid_organizacion` INT)  NO SQL
+DELETE FROM torganizacionesxtorneo
+WHERE torganizacionesxtorneo.id_torneo = pid_torneo AND torganizacionesxtorneo.id_organizacion = pid_organizacion$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_eliminar_patrocinador_exhibicion` (IN `pid_exhibicion` INT, IN `pid_patrocinador` INT)  NO SQL
+DELETE FROM tpatrocinadoresxexhibicion
+WHERE tpatrocinadoresxexhibicion.id_exhibicion = pid_exhibicion AND
+tpatrocinadoresxexhibicion.id_patrocinador = pid_patrocinador$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_eliminar_patrocinador_fogueo` (IN `pid_fogueo` INT, IN `pid_patrocinador` INT)  NO SQL
+DELETE FROM tpatrocinadoresxfogueo
+WHERE tpatrocinadoresxfogueo.id_fogueo = pid_fogueo AND tpatrocinadoresxfogueo.id_patrocinador = pid_patrocinador$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_eliminar_patrocinador_torneo` (IN `pid_torneo` INT, IN `pid_patrocinador` INT)  NO SQL
+DELETE FROM tpatrocinadoresxtorneo
+WHERE tpatrocinadoresxtorneo.id_torneo = pid_torneo AND tpatrocinadoresxtorneo.id_patrocinador = pid_patrocinador$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_filtrar_aproximacion_alumno` (IN `pnombre` VARCHAR(25) CHARSET utf8)  NO SQL
+SELECT talumno.*, tacademia.nombre as nombre_academia, tbprofesor.nombre1 as nombre_profesor
+FROM talumno, tacademia, tbprofesor
+WHERE (tacademia.id_academia = talumno.id_academia) AND (tbprofesor.id_profesor = talumno.id_profesor) AND (talumno.nombre like CONCAT('%',pnombre,'%') or talumno.apellido1 like CONCAT('%',pnombre,'%') or talumno.apellido2 like CONCAT('%',pnombre,'%') or talumno.correo like CONCAT('%',pnombre,'%') or talumno.cedula like CONCAT('%',pnombre,'%') or talumno.telefono like CONCAT('%',pnombre,'%') or talumno.edad like CONCAT('%',pnombre,'%') or talumno.genero like CONCAT('%',pnombre,'%') or talumno.fecha_nacimiento like CONCAT('%',pnombre,'%') or talumno.peso like CONCAT('%',pnombre,'%') or talumno.altura like CONCAT('%',pnombre,'%') or talumno.grado like CONCAT('%',pnombre,'%') or talumno.categoria_edad like CONCAT('%',pnombre,'%') or talumno.categoria_peso like CONCAT('%',pnombre,'%') or talumno.torneos_participados like CONCAT('%',pnombre,'%') or talumno.torneos_ganados like CONCAT('%',pnombre,'%') or talumno.exhibiciones_participadas like CONCAT('%',pnombre,'%') or talumno.direccion like CONCAT('%',pnombre,'%') or tacademia.nombre like CONCAT ('%',pnombre,'%'))$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_filtrar_aproximacion_exhibicion` (IN `pnombre` VARCHAR(25) CHARSET utf8)  NO SQL
+SELECT *
+FROM texhibicion
+WHERE nombre LIKE CONCAT('%',pnombre,'%') OR fecha_inicio LIKE CONCAT('%',pnombre,'%') OR fecha_fin LIKE CONCAT('%',pnombre,'%') OR precio_entrada LIKE CONCAT('%',pnombre,'%') OR invitado LIKE CONCAT ('%',pnombre,'%') OR estado LIKE CONCAT('%',pnombre,'%')$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_filtrar_aproximacion_fogueo` (IN `pnombre` VARCHAR(25))  NO SQL
+SELECT *
+FROM tfogueo
+WHERE (tfogueo.estado = 1) AND (nombre like CONCAT('%',pnombre,'%') or fecha_inicio like CONCAT('%',pnombre,'%') or fecha_fin like CONCAT('%',pnombre,'%') or precio_entrada like CONCAT('%',pnombre,'%'))$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_filtrar_aproximacion_patrocinador` (IN `pnombre_patrocinador` VARCHAR(25) CHARSET utf8)  NO SQL
+SELECT *
+FROM tpatrocinador
+WHERE nombre_patrocinador like CONCAT('%', pnombre_patrocinador,'%') or nombre_sociedad_anonima like CONCAT('%',pnombre_patrocinador,'%') or correo like CONCAT('%',pnombre_patrocinador,'%') or tipo_patrocinio like CONCAT('%',pnombre_patrocinador,'%') or telefono like CONCAT('%',pnombre_patrocinador,'%') or monto like CONCAT('%', pnombre_patrocinador,'%') or descripcion_producto like CONCAT ('%',pnombre_patrocinador,'%')$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_id_profesor_por_correo` (IN `pCorreo` VARCHAR(30) CHARSET utf8)  NO SQL
+SELECT id_profesor FROM tbprofesor
+WHERE correo = pCorreo$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_academias` ()  NO SQL
+SELECT * FROM tacademia$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_alumno` ()  NO SQL
+SELECT *
+FROM talumno$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_asistentes` ()  NO SQL
+SELECT *
+FROM info_asistente$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_asistentes_por_aproximacion` (IN `pnombre` VARCHAR(25))  NO SQL
+SELECT *
+FROM info_asistente
+WHERE nombre like CONCAT('%',pnombre,'%') or cedula like CONCAT('%',pnombre,'%') or apellido1 like CONCAT('%',pnombre,'%') or apellido2 like CONCAT('%',pnombre,'%') or correo like CONCAT('%',pnombre,'%') or telefono like CONCAT('%',pnombre,'%') or genero like CONCAT('%',pnombre,'%') or fecha_nacimiento like CONCAT('%',pnombre,'%')$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_exhibicion` ()  NO SQL
+SELECT *
+FROM texhibicion$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_fogueo` ()  NO SQL
+SELECT *
+FROM tfogueo$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_id_alumnos_por_exhibicion` (IN `pid` INT)  NO SQL
+SELECT talumnosxexhibicion.id_exhibicion, talumnosxexhibicion.id_alumno
+FROM talumnosxexhibicion
+WHERE talumnosxexhibicion.id_exhibicion = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_id_alumnos_por_fogueo` (IN `pid` INT)  NO SQL
+SELECT talumnosxfogueo.id_fogueo, talumnosxfogueo.id_alumno
+FROM talumnosxfogueo
+WHERE talumnosxfogueo.id_fogueo = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_id_alumnos_por_torneo` (IN `pid` INT)  NO SQL
+SELECT talumnosxtorneo.id_torneo, talumnosxtorneo.id_alumno
+FROM talumnosxtorneo
+WHERE talumnosxtorneo.id_torneo = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_id_lugar_por_exhibicion` (IN `pid` INT)  NO SQL
+SELECT tlugaresxexhibicion.id_exhibicion, tlugaresxexhibicion.id_lugar
+FROM tlugaresxexhibicion
+WHERE tlugaresxexhibicion.id_exhibicion = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_id_lugar_por_fogueo` (IN `pid` INT)  NO SQL
+SELECT tlugaresxfogueo.id_fogueo, tlugaresxfogueo.id_lugar
+FROM tlugaresxfogueo
+WHERE tlugaresxfogueo.id_fogueo = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_id_lugar_por_torneo` (IN `pid` INT)  NO SQL
+SELECT tluagresxtoreno.id_torneo, tluagresxtoreno.id_lugar
+FROM tluagresxtoreno
+WHERE tluagresxtoreno.id_torneo = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_id_organizacion_por_exhibicion` (IN `pid` INT)  NO SQL
+SELECT torganizacionesxexhibicion.id_exhibicion,
+torganizacionesxexhibicion.id_organizacion
+FROM torganizacionesxexhibicion
+WHERE torganizacionesxexhibicion.id_exhibicion = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_id_organizacion_por_fogueo` (IN `pid` INT)  NO SQL
+SELECT torganizacionesxfogueo.id_fogueo, torganizacionesxfogueo.id_organizacion
+FROM torganizacionesxfogueo
+WHERE torganizacionesxfogueo.id_fogueo = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_id_organizacion_por_torneo` (IN `pid` INT)  NO SQL
+SELECT torganizacionesxtorneo.id_torneo, torganizacionesxtorneo.id_organizacion
+FROM torganizacionesxtorneo
+WHERE torganizacionesxtorneo.id_torneo = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_id_patrocinadores_por_exhibicion` (IN `pid` INT)  NO SQL
+SELECT tpatrocinadoresxexhibicion.id_exhibicion,
+tpatrocinadoresxexhibicion.id_patrocinador
+FROM tpatrocinadoresxexhibicion
+WHERE tpatrocinadoresxexhibicion.id_exhibicion = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_id_patrocinadores_por_fogueo` (IN `pid` INT)  NO SQL
+SELECT tpatrocinadoresxfogueo.id_fogueo, tpatrocinadoresxfogueo.id_patrocinador
+FROM tpatrocinadoresxfogueo
+WHERE tpatrocinadoresxfogueo.id_fogueo = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_id_patrocinadores_por_torneo` (IN `pid` INT)  NO SQL
+SELECT tpatrocinadoresxtorneo.id_torneo, tpatrocinadoresxtorneo.id_patrocinador
+FROM tpatrocinadoresxtorneo
+WHERE tpatrocinadoresxtorneo.id_torneo = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_patrocinador` ()  NO SQL
+SELECT *
+FROM tpatrocinador$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_profesores` ()  NO SQL
+SELECT * from tbprofesor$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_profesores_por_aproximacion_nombre` (IN `pfiltro` VARCHAR(30) CHARSET utf8)  NO SQL
+SELECT tbprofesor.*, tacademia.nombre FROM tbprofesor, tacademia
+WHERE tacademia.id_academia = tbprofesor.id_academia AND (tbprofesor.nombre1 like CONCAT('%',pfiltro,'%') or tbprofesor.nombre2 like CONCAT('%',pfiltro,'%') or tbprofesor.apellido1 like CONCAT('%',pfiltro,'%') or tbprofesor.apellido2 like CONCAT('%',pfiltro,'%') or tbprofesor.cedula like CONCAT('%',pfiltro,'%') or tbprofesor.telefono like CONCAT('%',pfiltro,'%') or tbprofesor.correo like CONCAT('%',pfiltro,'%') or tbprofesor.genero like CONCAT('%',pfiltro,'%') or tbprofesor.fecha like CONCAT('%',pfiltro,'%')  or tbprofesor.estado like CONCAT('%',pfiltro,'%') or tacademia.nombre like CONCAT('%',pfiltro,'%'))
+ORDER BY tbprofesor.nombre1 ASC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_torneo` ()  NO SQL
+SELECT * FROM ttorneo$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_listar_usuarios` ()  NO SQL
+SELECT * FROM tbusuarios$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_modicar_alumno` (IN `pid_academia` INT, IN `pid_profesor` INT, IN `pnombre` VARCHAR(25) CHARSET utf8, IN `papellido1` VARCHAR(25) CHARSET utf8, IN `papellido2` VARCHAR(25) CHARSET utf8, IN `pcorreo` VARCHAR(30) CHARSET utf8, IN `pcedula` VARCHAR(20) CHARSET utf8, IN `ptelefono` VARCHAR(15) CHARSET utf8, IN `pedad` INT, IN `pgenero` VARCHAR(9) CHARSET utf8, IN `pfecha_nacimiento` DATE, IN `ppeso` INT, IN `paltura` INT, IN `pgrado` VARCHAR(8) CHARSET utf8, IN `pcategoria_edad` VARCHAR(10) CHARSET utf8, IN `pcategoria_peso` VARCHAR(20) CHARSET utf8, IN `ptorneos_participados` INT, IN `ptorneos_ganados` INT, IN `pexhibiciones_participadas` INT, IN `pdireccion` TEXT CHARSET utf8, IN `pid` INT)  NO SQL
+UPDATE talumno
+SET id_academia = pid_academia,
+    id_profesor = pid_profesor,
+    nombre = pnombre,
+    apellido1 = papellido1,
+    apellido2 = papellido2,
+    correo = pcorreo,
+    cedula = pcedula,
+    telefono = ptelefono,
+    edad = pedad,
+    genero = pgenero,
+    fecha_nacimiento =  pfecha_nacimiento,
+    peso = ppeso,
+    altura = paltura,
+    grado = pgrado,
+    categoria_edad = pcategoria_edad,
+    categoria_peso = pcategoria_peso,
+    torneos_participados = ptorneos_participados,
+    torneos_ganados = ptorneos_ganados,
+    exhibiciones_participadas = pexhibiciones_participadas,
+    direccion = pdireccion
+WHERE id_alumno = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_modicar_patrocinador` (IN `pnombre_patrocinador` VARCHAR(25) CHARSET utf8, IN `pnombre_sociedad_anonima` VARCHAR(25) CHARSET utf8, IN `pcorreo` VARCHAR(30) CHARSET utf8, IN `ptipo_patrocinio` VARCHAR(15) CHARSET utf8, IN `ptelefono` VARCHAR(15) CHARSET utf8, IN `pmonto` INT, IN `pdescripcion_producto` TEXT CHARSET utf8, IN `pid` INT)  NO SQL
+UPDATE tpatrocinador
+SET nombre_patrocinador = pnombre_patrocinador,
+    nombre_sociedad_anonima = pnombre_sociedad_anonima,
+    correo = pcorreo,
+    tipo_patrocinio = ptipo_patrocinio,
+    telefono = ptelefono,
+    monto = pmonto,
+    descripcion_producto = pdescripcion_producto
+WHERE id_patrocinador = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_modificar_administrador` (IN `pnombre` VARCHAR(25) CHARSET utf8, IN `pnombre2` VARCHAR(25) CHARSET utf8, IN `papellido1` VARCHAR(25) CHARSET utf8, IN `papellido2` VARCHAR(25) CHARSET utf8, IN `pcedula` VARCHAR(15) CHARSET utf8, IN `ptelefono` VARCHAR(15) CHARSET utf8, IN `pid` INT)  NO SQL
+UPDATE tadministrador
+SET
+nombre1 = pnombre,
+nombre2 = pnombre2,
+apellido1 = papellido1,
+apellido2 = papellido2,
+cedula = pcedula,
+telefono = ptelefono
+WHERE tadministrador.id_administrador = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_modificar_asistente` (IN `pcedula` VARCHAR(20) CHARSET utf8, IN `pnombre` VARCHAR(25) CHARSET utf8, IN `papellido1` VARCHAR(25) CHARSET utf8, IN `papellido2` VARCHAR(25) CHARSET utf8, IN `pcorreo` VARCHAR(30) CHARSET utf8, IN `ptelefono` VARCHAR(15) CHARSET utf8, IN `pgenero` VARCHAR(10) CHARSET utf8, IN `pfechanacim` DATE, IN `pid` INT)  NO SQL
+UPDATE info_asistente
+SET cedula = pcedula,
+nombre = pnombre,
+apellido1 = papellido1,
+apellido2 = papellido2,
+correo = pcorreo,
+telefono = ptelefono,
+genero = pgenero,
+fecha_nacimiento = pfechanacim
+WHERE id_asistente = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_modificar_exhibicion` (IN `pnombre` VARCHAR(25) CHARSET utf8, IN `pfecha_inicio` DATE, IN `pfecha_fin` DATE, IN `pprecio_entrada` INT, IN `pinvitado` VARCHAR(25) CHARSET utf8, IN `pid` INT)  NO SQL
+UPDATE texhibicion
+SET
+nombre = pnombre,
+fecha_inicio = pfecha_inicio,
+fecha_fin = pfecha_fin,
+precio_entrada = pprecio_entrada,
+invitado = pinvitado
+WHERE texhibicion.id_exhibicion = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_modificar_lugar` (IN `pnombre_lugar` VARCHAR(25) CHARSET utf8, IN `pnombre_encargado` VARCHAR(25) CHARSET utf8, IN `pcapacidad` VARCHAR(25) CHARSET utf8, IN `pdireccion` VARCHAR(25) CHARSET utf8, IN `ptelefono` VARCHAR(30) CHARSET utf8, IN `pcorreo` VARCHAR(30) CHARSET utf8, IN `pcx` TEXT, IN `pcy` TEXT, IN `pid` INT)  NO SQL
+UPDATE tlugar
+SET 
+nombre_lugar = pnombre_lugar,
+nombre_encargado = pnombre_encargado,
+capacidad = capacidad,
+direccion = pdireccion,
+telefono = ptelefono,
+correo = pcorreo,
+cx = pcx,
+cy = pcy
+WHERE id_lugar= pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_modificar_organizacion` (IN `pnombre` VARCHAR(25) CHARSET utf8, IN `ptipo` VARCHAR(25) CHARSET utf8, IN `pdireccion` VARCHAR(25) CHARSET utf8, IN `ptelefono` VARCHAR(25) CHARSET utf8, IN `pcorreo` VARCHAR(30) CHARSET utf8, IN `pid` INT)  NO SQL
+UPDATE torganizacion
+SET 
+nombre= pnombre,
+tipo=ptipo,
+direccion=pdireccion,
+telefono=ptelefono,
+correo=pcorreo
+WHERE id_organizacion = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_modificar_profesor` (IN `pid_academia` INT, IN `pnombre1` VARCHAR(25) CHARSET utf8, IN `pnombre2` VARCHAR(25) CHARSET utf8, IN `papellido1` VARCHAR(25) CHARSET utf8, IN `papellido2` VARCHAR(25) CHARSET utf8, IN `pcedula` VARCHAR(20) CHARSET utf8, IN `ptelefono` VARCHAR(15), IN `pcorreo` VARCHAR(30), IN `pgenero` VARCHAR(9), IN `pfecha` DATE, IN `pid` INT)  NO SQL
+UPDATE tbprofesor
+SET id_academia = pid_academia,
+  	nombre1 = pnombre1,
+  	nombre2 = pnombre2,
+  	apellido1 = papellido1,
+  	apellido2 = papellido2,
+  	cedula = pcedula,
+  	telefono = ptelefono,
+  	correo = pcorreo,
+  	genero = pgenero,
+  	fecha = pfecha
+WHERE id_profesor = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_modificar_torneo` (IN `pnombre` VARCHAR(25) CHARSET utf8, IN `pfecha_inicio` DATE, IN `pfecha_fin` DATE, IN `pprecio_entrada` INT, IN `pid` INT)  NO SQL
+UPDATE ttorneo
+SET
+nombre = pnombre,
+fecha_inicio = pfecha_inicio,
+fecha_fin = pfecha_fin,
+precio_entrada = pprecio_entrada
+WHERE ttorneo.id_torneo = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_nombre_exhibicion_x_id` (IN `pid` INT)  NO SQL
+SELECT texhibicion.nombre
+FROM texhibicion
+WHERE texhibicion.id_exhibicion = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_nombre_fogueo_x_id` (IN `pid` INT)  NO SQL
+SELECT tfogueo.nombre
+FROM tfogueo
+WHERE tfogueo.id_fogueo = pid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_registar_patrocinador` (IN `pnombre_patrocinador` VARCHAR(25) CHARSET utf8, IN `pnombre_sociedad_anonima` VARCHAR(25) CHARSET utf8, IN `pcorreo` VARCHAR(30) CHARSET utf8, IN `ptipo_patrocinio` VARCHAR(15) CHARSET utf8, IN `ptelefono` VARCHAR(15) CHARSET utf8, IN `pmonto` INT, IN `pdescripcion_producto` TEXT CHARSET utf8)  NO SQL
+INSERT INTO tpatrocinador(
+	nombre_patrocinador,
+    nombre_sociedad_anonima,
+    correo,
+    tipo_patrocinio,
+    telefono,
+    monto,
+    descripcion_producto
+   
+)
+VALUES(
+    pnombre_patrocinador,
+    pnombre_sociedad_anonima,
+    pcorreo,
+    ptipo_patrocinio,
+    ptelefono,
+    pmonto,
+    pdescripcion_producto
+
+)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_registrar_academia` (IN `pnombre` VARCHAR(30) CHARSET utf8, IN `pcorreo` VARCHAR(30) CHARSET utf8, IN `ptelefono` VARCHAR(15) CHARSET utf8, IN `pdireccion` VARCHAR(40) CHARSET utf8)  NO SQL
+INSERT INTO tacademia(
+  nombre,
+  correo,
+  telefono,
+  direccion
+)
+VALUES(
+  pnombre,
+  pcorreo,
+  ptelefono,
+  pdireccion
+)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_registrar_alumno` (IN `pid_academia` INT, IN `pid_profesor` INT, IN `pnombre` VARCHAR(25) CHARSET utf8, IN `papellido1` VARCHAR(25) CHARSET utf8, IN `papellido2` VARCHAR(25) CHARSET utf8, IN `pcorreo` VARCHAR(30) CHARSET utf8, IN `pcedula` VARCHAR(20) CHARSET utf8, IN `ptelefono` VARCHAR(15) CHARSET utf8, IN `pedad` INT, IN `pgenero` VARCHAR(9) CHARSET utf8, IN `pfecha_nacimiento` DATE, IN `ppeso` INT, IN `paltura` INT, IN `pgrado` VARCHAR(8) CHARSET utf8, IN `pcategoria_edad` VARCHAR(10) CHARSET utf8, IN `pcategoria_peso` VARCHAR(10) CHARSET utf8, IN `ptorneos_participados` INT, IN `ptorneos_ganados` INT, IN `pexhibiciones_participadas` INT, IN `pdireccion` TEXT CHARSET utf8)  NO SQL
+INSERT INTO talumno(
+	id_academia,
+    id_profesor,
+    nombre,
+    apellido1,
+    apellido2,
+    correo,
+    cedula,
+    telefono,
+    edad,
+    genero,
+    fecha_nacimiento,
+    peso,
+    altura,
+    grado,
+    categoria_edad,
+    categoria_peso,
+    torneos_participados,
+    torneos_ganados,
+    exhibiciones_participadas,
+    direccion  
+)
+VALUES(
+	pid_academia,
+    pid_profesor,
+    pnombre,
+    papellido1,
+    papellido2,
+    pcorreo,
+    pcedula,
+    ptelefono,
+    pedad,
+    pgenero,
+    pfecha_nacimiento,
+    ppeso,
+    paltura,
+    pgrado,
+    pcategoria_edad,
+    pcategoria_peso,
+    ptorneos_participados,
+    ptorneos_ganados,
+    pexhibiciones_participadas,
+    pdireccion
+)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_registrar_asistente` (IN `pcedula` VARCHAR(20) CHARSET utf8, IN `pnombre` VARCHAR(25), IN `papellido1` VARCHAR(25), IN `papellido2` VARCHAR(25), IN `pcorreo` VARCHAR(30), IN `ptelefono` VARCHAR(15), IN `pgenero` VARCHAR(10), IN `pfechanacim` DATE)  NO SQL
+INSERT INTO info_asistente(
+    cedula,
+    nombre,
+    apellido1,
+    apellido2,
+    correo,
+    telefono,
+    genero,
+    fecha_nacimiento
+)
+VALUES(
+    pcedula,
+    pnombre,
+    papellido1,
+    papellido2,
+    pcorreo,
+    ptelefono,
+    pgenero,
+    pfechanacim
+)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_registrar_exhibicion` (IN `pnombre` VARCHAR(25) CHARSET utf8, IN `pfecha_inicio` DATE, IN `pfecha_fin` DATE, IN `pprecio_entrada` INT, IN `pinvitado` VARCHAR(25) CHARSET utf8, IN `pestado` TINYINT)  NO SQL
+INSERT INTO texhibicion(
+    nombre,
+    fecha_inicio,
+    fecha_fin,
+    precio_entrada,
+    invitado,
+    estado
+)
+VALUES(
+    pnombre,
+    pfecha_inicio,
+    pfecha_fin,
+    pprecio_entrada,
+    pinvitado,
+    pestado
+)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_registrar_fogueo` (IN `pnombre` VARCHAR(25) CHARSET utf8, IN `pfecha_inicio` DATE, IN `pfecha_fin` DATE, IN `pprecio_entrada` INT, IN `pestado` TINYINT)  NO SQL
+INSERT INTO tfogueo(
+	nombre,
+    fecha_inicio,
+    fecha_fin,
+    precio_entrada,
+    estado
+)
+
+VALUES(
+    pnombre,
+    pfecha_inicio,
+    pfecha_fin,
+    pprecio_entrada,
+	pestado
+)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_registrar_profesor` (IN `pid_academia` INT, IN `pnombre1` VARCHAR(25) CHARSET utf8, IN `pnombre2` VARCHAR(25) CHARSET utf8, IN `papellido1` VARCHAR(25) CHARSET utf8, IN `papellido2` VARCHAR(25) CHARSET utf8, IN `pcedula` VARCHAR(20) CHARSET utf8, IN `ptelefono` VARCHAR(15) CHARSET utf8, IN `pcorreo` VARCHAR(30) CHARSET utf8, IN `pgenero` VARCHAR(9) CHARSET utf8, IN `pfecha` DATE, IN `pestado` TINYINT(1))  NO SQL
+INSERT INTO tbprofesor(
+  id_academia,
+  nombre1,
+  nombre2,
+  apellido1,
+  apellido2,
+  cedula,
+  telefono,
+  correo,
+  genero,
+  fecha,
+  estado
+)
+VALUES(
+  pid_academia,
+  pnombre1,
+  pnombre2,
+  papellido1,
+  papellido2,
+  pcedula,
+  ptelefono,
+  pcorreo,
+  pgenero,
+  pfecha,
+  pestado
+)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_registrar_torneo` (IN `pnombre` VARCHAR(25) CHARSET utf8, IN `pfecha_inicio` DATE, IN `pfecha_fin` DATE, IN `pprecio_entrada` INT, IN `pestado` TINYINT)  NO SQL
+INSERT INTO ttorneo(
+    nombre,
+ 	fecha_inicio,
+ 	fecha_fin,
+	precio_entrada,
+ 	estado
+)
+VALUES(
+    pnombre,
+    pfecha_inicio,
+    pfecha_fin,
+    pprecio_entrada,
+    pestado
+    )$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_registrar_usuario` (IN `pNombre` VARCHAR(25) CHARSET utf8, IN `pCorreo` VARCHAR(30) CHARSET utf8, IN `pContrasenna` VARCHAR(15) CHARSET utf8, IN `pEstado` TINYINT, IN `pRol` TINYINT)  NO SQL
+INSERT INTO tbusuarios(
+  nombre,
+  correo,
+  contrasenna,
+  estado,
+  id_rol
+)
+VALUES(
+    pNombre,
+    pCorreo,
+    pContrasenna,
+    pEstado,
+    pRol
+)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_validar_correo_existente` (IN `pCorreo` VARCHAR(30) CHARSET utf8)  NO SQL
+SELECT correo
+FROM tbusuarios
+WHERE correo = pCorreo$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_verificar_usuario` (IN `pCorreo` VARCHAR(30) CHARSET utf8, IN `pContrasenna` VARCHAR(15) CHARSET utf8)  NO SQL
+SELECT id_usuario, nombre, correo, estado, id_rol, id_actor From tbusuarios
+WHERE correo = pCorreo and contrasenna = pContrasenna$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrar_lugar` (IN `pnombre_lugar` VARCHAR(25) CHARSET utf8, IN `pnombre_encargado` VARCHAR(25) CHARSET utf8, IN `pcapacidad` INT(25), IN `pdireccion` VARCHAR(25) CHARSET utf8, IN `ptelefono` VARCHAR(25) CHARSET utf8, IN `pcorreo` VARCHAR(25), IN `pcx` TEXT, IN `pcy` TEXT, IN `pestado` TINYINT)  NO SQL
+INSERT INTO tlugar(
+
+    
+  nombre_lugar,
+  nombre_encargado,
+    capacidad,
+    direccion,
+     telefono,
+     correo,
+     cx,
+    cy,
+    estado
+    
+
+)
+VALUES(
+ pnombre_lugar,
+  pnombre_encargado,
+      pcapacidad,
+    pdireccion,
+     ptelefono,
+     pcorreo,
+  
+     pcx,
+    pcy,
+    estado
+    
+
+)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrar_organizacion` (IN `pnombre` VARCHAR(25) CHARSET utf8, IN `ptipo` VARCHAR(25) CHARSET utf8, IN `pdireccion` TEXT CHARSET utf8, IN `ptelefono` INT(8), IN `pcorreo` VARCHAR(25) CHARSET utf8)  NO SQL
+INSERT INTO torganizacion(
+  nombre,
+    tipo,
+    direccion,
+    telefono,
+    correo
+    
+
+)
+VALUES(
+      pnombre,
+    ptipo,
+    pdireccion,
+    ptelefono,
+    pcorreo
+
+)$$
+
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `info_asistente`
+--
+
+CREATE TABLE `info_asistente` (
+  `id_asistente` int(11) NOT NULL,
+  `cedula` varchar(20) NOT NULL,
+  `nombre` varchar(25) NOT NULL,
+  `apellido1` varchar(25) NOT NULL,
+  `apellido2` varchar(25) NOT NULL,
+  `correo` varchar(30) NOT NULL,
+  `telefono` varchar(15) NOT NULL,
+  `genero` varchar(10) NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `estado` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `info_asistente`
+--
+
+INSERT INTO `info_asistente` (`id_asistente`, `cedula`, `nombre`, `apellido1`, `apellido2`, `correo`, `telefono`, `genero`, `fecha_nacimiento`, `estado`) VALUES
+(42, '117859403', 'Luisa', 'Fernandez', 'Rosales', 'luisa.fer@gmail.com', '71156043', 'Femenino', '1993-08-20', 1),
+(43, '113043978', 'Juan', 'Alvarado', 'Ocampo', 'rodri.oca@hotmail.com', '71492845', 'Masculino', '1997-03-26', 0),
+(44, '11850353', 'Pedro', 'Cordero', 'Smith', 'pedro@gmail.com', '71140523', 'Masculino', '2017-08-24', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `producto`
+--
+
+CREATE TABLE `producto` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `precio` decimal(9,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Dumping data for table `producto`
+--
+
+INSERT INTO `producto` (`id`, `descripcion`, `precio`) VALUES
+(1, 'Torneo', 8000.00),
+(2, 'Exhibicion', 2000.00),
+(3, 'Fogueo', 3000.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `puntos`
+--
+
+CREATE TABLE `puntos` (
+  `IdPunto` int(11) NOT NULL,
+  `Titulo` text COLLATE utf8_spanish_ci NOT NULL,
+  `cx` text COLLATE utf8_spanish_ci NOT NULL,
+  `cy` text COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Dumping data for table `puntos`
+--
+
+INSERT INTO `puntos` (`IdPunto`, `Titulo`, `cx`, `cy`) VALUES
+(56, 'BN Arena', '9.91503130791384', ' -84.10468483285513'),
+(58, 'Villa Olympica', '9.896582255296474', ' -84.06178665187326');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tacademia`
+--
+
+CREATE TABLE `tacademia` (
+  `id_academia` int(11) NOT NULL,
+  `nombre` varchar(30) NOT NULL,
+  `telefono` varchar(30) NOT NULL,
+  `correo` varchar(30) NOT NULL,
+  `direccion` varchar(30) NOT NULL,
+  `estado` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `tacademia`
+--
+
+INSERT INTO `tacademia` (`id_academia`, `nombre`, `telefono`, `correo`, `direccion`, `estado`) VALUES
+(45, 'Tigre Cenfo', '222974503', 'infochali@hotmail.com', 'San Jose', 0),
+(46, 'Yin Yang', '22238437', 'yinyang@gmail.com', 'Desamparados', 0),
+(48, 'Kung Lao', 'kung@gmail.com', '86274039', 'Coronado', 0),
+(49, 'Goku', 'a@a.com', '132123', 'San Jose', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tadministrador`
+--
+
+CREATE TABLE `tadministrador` (
+  `id_administrador` int(11) NOT NULL,
+  `nombre1` varchar(25) NOT NULL,
+  `nombre2` varchar(25) NOT NULL,
+  `apellido1` varchar(25) NOT NULL,
+  `apellido2` varchar(25) NOT NULL,
+  `cedula` varchar(20) NOT NULL,
+  `telefono` varchar(15) NOT NULL,
+  `correo` varchar(30) NOT NULL,
+  `genero` varchar(9) NOT NULL,
+  `fecha` date NOT NULL,
+  `estado` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tadministrador`
+--
+
+INSERT INTO `tadministrador` (`id_administrador`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `cedula`, `telefono`, `correo`, `genero`, `fecha`, `estado`) VALUES
+(1, 'Pablo', 'brayan2', 'Saborio', 'Saborio', '115590441', '88716885', 'admin@admin.com', 'Masculino', '2017-08-02', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `talumno`
+--
+
+CREATE TABLE `talumno` (
+  `id_alumno` int(11) NOT NULL,
+  `id_academia` int(11) NOT NULL,
+  `id_profesor` int(11) NOT NULL,
+  `nombre` varchar(25) NOT NULL,
+  `apellido1` varchar(25) NOT NULL,
+  `apellido2` varchar(25) NOT NULL,
+  `correo` varchar(30) NOT NULL,
+  `cedula` varchar(20) NOT NULL,
+  `telefono` varchar(15) NOT NULL,
+  `edad` int(11) NOT NULL,
+  `genero` varchar(9) NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `peso` int(11) NOT NULL,
+  `altura` int(11) NOT NULL,
+  `grado` varchar(8) NOT NULL,
+  `categoria_edad` varchar(10) NOT NULL,
+  `categoria_peso` varchar(20) NOT NULL,
+  `torneos_participados` int(11) NOT NULL,
+  `torneos_ganados` int(11) NOT NULL,
+  `exhibiciones_participadas` int(11) NOT NULL,
+  `direccion` text NOT NULL,
+  `estado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `talumno`
+--
+
+INSERT INTO `talumno` (`id_alumno`, `id_academia`, `id_profesor`, `nombre`, `apellido1`, `apellido2`, `correo`, `cedula`, `telefono`, `edad`, `genero`, `fecha_nacimiento`, `peso`, `altura`, `grado`, `categoria_edad`, `categoria_peso`, `torneos_participados`, `torneos_ganados`, `exhibiciones_participadas`, `direccion`, `estado`) VALUES
+(55, 45, 6, 'Stefano', 'Gregori', 'Muñoz', 'stefano@gmail.com', '116830349', '71139450', 20, 'Masculino', '1997-08-04', 70, 2, 'Azul', 'Elite', 'Sam-Yang ', 2, 1, 3, 'Puntarenas', 0),
+(56, 46, 6, 'Everardo', 'Soto', 'Arias', 'eversoto@gmail.com', '117840329', '71134383', 21, 'Masculino', '1996-09-05', 80, 2, 'Rojo', 'Elite', 'Siu-Yang', 4, 2, 5, 'Heredia', 0),
+(57, 49, 6, 'Pablo', 'Monestel', 'Guardia', 'a@a.com', '1223123', '1231231', 12, 'Masculino', '3212-12-21', 70, 2, 'Verde', 'Elite', 'Il-Yang', 2, 3, 123, 'San Jose', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `talumnosxexhibicion`
+--
+
+CREATE TABLE `talumnosxexhibicion` (
+  `id_alumnosxexhibicion` int(11) NOT NULL,
+  `id_exhibicion` int(11) NOT NULL,
+  `id_alumno` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `talumnosxexhibicion`
+--
+
+INSERT INTO `talumnosxexhibicion` (`id_alumnosxexhibicion`, `id_exhibicion`, `id_alumno`) VALUES
+(12, 32, 55),
+(13, 32, 56);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `talumnosxfogueo`
+--
+
+CREATE TABLE `talumnosxfogueo` (
+  `id_alumnosxfogueo` int(11) NOT NULL,
+  `id_fogueo` int(11) NOT NULL,
+  `id_alumno` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `talumnosxfogueo`
+--
+
+INSERT INTO `talumnosxfogueo` (`id_alumnosxfogueo`, `id_fogueo`, `id_alumno`) VALUES
+(27, 32, 56);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `talumnosxtorneo`
+--
+
+CREATE TABLE `talumnosxtorneo` (
+  `id_alumnosxtorneo` int(11) NOT NULL,
+  `id_torneo` int(11) NOT NULL,
+  `id_alumno` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `talumnosxtorneo`
+--
+
+INSERT INTO `talumnosxtorneo` (`id_alumnosxtorneo`, `id_torneo`, `id_alumno`) VALUES
+(17, 8, 55),
+(18, 8, 56);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbprofesor`
+--
+
+CREATE TABLE `tbprofesor` (
+  `id_profesor` int(11) NOT NULL,
+  `id_academia` int(11) NOT NULL,
+  `nombre1` varchar(25) NOT NULL,
+  `nombre2` varchar(25) NOT NULL,
+  `apellido1` varchar(25) NOT NULL,
+  `apellido2` varchar(25) NOT NULL,
+  `cedula` varchar(20) NOT NULL,
+  `telefono` varchar(15) NOT NULL,
+  `correo` varchar(30) NOT NULL,
+  `genero` varchar(9) NOT NULL,
+  `fecha` date NOT NULL,
+  `estado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbprofesor`
+--
+
+INSERT INTO `tbprofesor` (`id_profesor`, `id_academia`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `cedula`, `telefono`, `correo`, `genero`, `fecha`, `estado`) VALUES
+(6, 45, 'Jorge', 'Jose', 'Perez', 'Smith', '71156302', '118239504', 'jorge@gmail.com', 'Masculino', '1990-08-26', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbusuarios`
+--
+
+CREATE TABLE `tbusuarios` (
+  `id_usuario` int(11) NOT NULL,
+  `nombre` varchar(25) NOT NULL,
+  `correo` varchar(30) NOT NULL,
+  `contrasenna` varchar(15) NOT NULL,
+  `estado` tinyint(4) NOT NULL,
+  `id_rol` int(11) NOT NULL,
+  `id_actor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbusuarios`
+--
+
+INSERT INTO `tbusuarios` (`id_usuario`, `nombre`, `correo`, `contrasenna`, `estado`, `id_rol`, `id_actor`) VALUES
+(1, 'Brayan', 'br@br.com', 'hola', 1, 2, 0),
+(2, 'Pedro', 'p@p.com', 'hola', 0, 2, 0),
+(3, 'Admin', 'admin@admin.com', 'admin', 1, 0, 1),
+(4, 'Pedro', 'pedro@pedro.com', 'pedro', 1, 3, 0),
+(5, 'profe', 'p@porfe.com', 'temporal', 1, 2, 0),
+(6, 'Reginald', 'mruss@gmail.es', 'temporal', 1, 2, 0),
+(7, 'ijjijij', 'jkjk@jj.com', 'temporal', 1, 2, 0),
+(8, 'Jorge', 'jorge@gmail.com', 'temporal', 1, 2, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `texhibicion`
+--
+
+CREATE TABLE `texhibicion` (
+  `id_exhibicion` int(11) NOT NULL,
+  `nombre` varchar(25) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `precio_entrada` int(11) NOT NULL,
+  `estado` tinyint(4) NOT NULL,
+  `invitado` varchar(25) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `texhibicion`
+--
+
+INSERT INTO `texhibicion` (`id_exhibicion`, `nombre`, `fecha_inicio`, `fecha_fin`, `precio_entrada`, `estado`, `invitado`) VALUES
+(32, 'Combat 361', '2017-08-18', '2017-08-18', 2500, 1, 'Luis Guillermo Solis');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tfogueo`
+--
+
+CREATE TABLE `tfogueo` (
+  `id_fogueo` int(11) NOT NULL,
+  `nombre` varchar(25) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `precio_entrada` int(11) NOT NULL,
+  `estado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tfogueo`
+--
+
+INSERT INTO `tfogueo` (`id_fogueo`, `nombre`, `fecha_inicio`, `fecha_fin`, `precio_entrada`, `estado`) VALUES
+(32, 'Relampago yiang', '2017-08-30', '2017-08-19', 3000, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tluagresxtoreno`
+--
+
+CREATE TABLE `tluagresxtoreno` (
+  `id_lugaresxtorneo` int(11) NOT NULL,
+  `id_torneo` int(11) NOT NULL,
+  `id_lugar` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tluagresxtoreno`
+--
+
+INSERT INTO `tluagresxtoreno` (`id_lugaresxtorneo`, `id_torneo`, `id_lugar`) VALUES
+(8, 8, 56);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tlugar`
+--
+
+CREATE TABLE `tlugar` (
+  `id_lugar` int(25) NOT NULL,
+  `nombre_lugar` varchar(25) NOT NULL,
+  `nombre_encargado` varchar(25) NOT NULL,
+  `capacidad` int(25) NOT NULL,
+  `direccion` varchar(25) NOT NULL,
+  `correo` varchar(25) NOT NULL,
+  `telefono` varchar(25) NOT NULL,
+  `cx` text NOT NULL,
+  `cy` text NOT NULL,
+  `estado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tlugar`
+--
+
+INSERT INTO `tlugar` (`id_lugar`, `nombre_lugar`, `nombre_encargado`, `capacidad`, `direccion`, `correo`, `telefono`, `cx`, `cy`, `estado`) VALUES
+(56, 'BN Arena', 'Santiago Perez', 1000, '  San Jose', 'bn.arena@gmail.com', '22275403', '9.91503130791384', ' -84.10468483285513', 0),
+(58, 'Villa Olympica', 'Danila Rosales', 500, 'Desamparados', 'villa@gmail.com', '22280635', '9.896582255296474', ' -84.06178665187326', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tlugaresxexhibicion`
+--
+
+CREATE TABLE `tlugaresxexhibicion` (
+  `id_lugaresxexhibicion` int(11) NOT NULL,
+  `id_exhibicion` int(11) NOT NULL,
+  `id_lugar` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tlugaresxexhibicion`
+--
+
+INSERT INTO `tlugaresxexhibicion` (`id_lugaresxexhibicion`, `id_exhibicion`, `id_lugar`) VALUES
+(14, 32, 56);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tlugaresxfogueo`
+--
+
+CREATE TABLE `tlugaresxfogueo` (
+  `id_lugaresxfogueo` int(11) NOT NULL,
+  `id_fogueo` int(11) NOT NULL,
+  `id_lugar` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tlugaresxfogueo`
+--
+
+INSERT INTO `tlugaresxfogueo` (`id_lugaresxfogueo`, `id_fogueo`, `id_lugar`) VALUES
+(41, 32, 58);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `torganizacion`
+--
+
+CREATE TABLE `torganizacion` (
+  `id_organizacion` int(25) NOT NULL,
+  `nombre` varchar(25) NOT NULL,
+  `tipo` varchar(25) NOT NULL,
+  `direccion` text CHARACTER SET utf8mb4 NOT NULL,
+  `telefono` varchar(15) NOT NULL,
+  `correo` varchar(25) NOT NULL,
+  `estado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `torganizacion`
+--
+
+INSERT INTO `torganizacion` (`id_organizacion`, `nombre`, `tipo`, `direccion`, `telefono`, `correo`, `estado`) VALUES
+(22, 'PANI', 'Social', '  San Jose', '22264039', 'pani@gmail.co.cr', 0),
+(23, 'INAMU', 'Social', '  San Jose', '22274385', 'inamu@hotmail.com', 0),
+(32, 'Hogares Crea', 'Social', 'Pavas, Romoser', '22343212', 'hcrea@gmail.com', 0),
+(33, 'MEP', 'Educativa', '  San Jose', '22874039', 'mep@gmail.co.cr', 0),
+(34, 'Asocenfo', 'Social', '  San Jose', '123123123', 'a@a.com', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `torganizacionesxexhibicion`
+--
+
+CREATE TABLE `torganizacionesxexhibicion` (
+  `id_organizacionesxexhibicion` int(11) NOT NULL,
+  `id_exhibicion` int(11) NOT NULL,
+  `id_organizacion` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `torganizacionesxexhibicion`
+--
+
+INSERT INTO `torganizacionesxexhibicion` (`id_organizacionesxexhibicion`, `id_exhibicion`, `id_organizacion`) VALUES
+(14, 32, 32);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `torganizacionesxfogueo`
+--
+
+CREATE TABLE `torganizacionesxfogueo` (
+  `id_organizacionesxfogueo` int(11) NOT NULL,
+  `id_fogueo` int(11) NOT NULL,
+  `id_organizacion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `torganizacionesxfogueo`
+--
+
+INSERT INTO `torganizacionesxfogueo` (`id_organizacionesxfogueo`, `id_fogueo`, `id_organizacion`) VALUES
+(16, 32, 32);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `torganizacionesxtorneo`
+--
+
+CREATE TABLE `torganizacionesxtorneo` (
+  `id_organizacionesxtorneo` int(11) NOT NULL,
+  `id_torneo` int(11) NOT NULL,
+  `id_organizacion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `torganizacionesxtorneo`
+--
+
+INSERT INTO `torganizacionesxtorneo` (`id_organizacionesxtorneo`, `id_torneo`, `id_organizacion`) VALUES
+(10, 8, 33);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tpatrocinador`
+--
+
+CREATE TABLE `tpatrocinador` (
+  `id_patrocinador` int(11) NOT NULL,
+  `nombre_patrocinador` varchar(25) NOT NULL,
+  `nombre_sociedad_anonima` varchar(25) NOT NULL,
+  `correo` varchar(30) NOT NULL,
+  `tipo_patrocinio` varchar(15) NOT NULL,
+  `telefono` varchar(15) NOT NULL,
+  `monto` int(11) NOT NULL,
+  `descripcion_producto` text NOT NULL,
+  `estado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tpatrocinador`
+--
+
+INSERT INTO `tpatrocinador` (`id_patrocinador`, `nombre_patrocinador`, `nombre_sociedad_anonima`, `correo`, `tipo_patrocinio`, `telefono`, `monto`, `descripcion_producto`, `estado`) VALUES
+(124, 'Adidas', 'adidas.sa', 'adidas@hotmail.com', 'Equipo', '22284537', 20000, 'Kimono', 0),
+(125, 'Coca Cola', 'Coca Cola SA', 'cocacola@gmail.com', 'Alimentación', '22264503', 60000, 'Bebidas hidratantes', 0),
+(126, 'crusa', 'Fundacion Crusa', 'a', 'Equipo', '123123123', 123123, 'Hola', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tpatrocinadoresxexhibicion`
+--
+
+CREATE TABLE `tpatrocinadoresxexhibicion` (
+  `id_patrocinadoresxexhibicion` int(11) NOT NULL,
+  `id_exhibicion` int(11) NOT NULL,
+  `id_patrocinador` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tpatrocinadoresxexhibicion`
+--
+
+INSERT INTO `tpatrocinadoresxexhibicion` (`id_patrocinadoresxexhibicion`, `id_exhibicion`, `id_patrocinador`) VALUES
+(11, 32, 124);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tpatrocinadoresxfogueo`
+--
+
+CREATE TABLE `tpatrocinadoresxfogueo` (
+  `id_patrocinadoresxfogueo` int(11) NOT NULL,
+  `id_fogueo` int(11) NOT NULL,
+  `id_patrocinador` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tpatrocinadoresxfogueo`
+--
+
+INSERT INTO `tpatrocinadoresxfogueo` (`id_patrocinadoresxfogueo`, `id_fogueo`, `id_patrocinador`) VALUES
+(16, 32, 125);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tpatrocinadoresxtorneo`
+--
+
+CREATE TABLE `tpatrocinadoresxtorneo` (
+  `id_patrocinadoresxtorneo` int(11) NOT NULL,
+  `id_torneo` int(11) NOT NULL,
+  `id_patrocinador` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tpatrocinadoresxtorneo`
+--
+
+INSERT INTO `tpatrocinadoresxtorneo` (`id_patrocinadoresxtorneo`, `id_torneo`, `id_patrocinador`) VALUES
+(8, 8, 124);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ttorneo`
+--
+
+CREATE TABLE `ttorneo` (
+  `id_torneo` int(11) NOT NULL,
+  `nombre` varchar(25) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `precio_entrada` int(11) NOT NULL,
+  `estado` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `ttorneo`
+--
+
+INSERT INTO `ttorneo` (`id_torneo`, `nombre`, `fecha_inicio`, `fecha_fin`, `precio_entrada`, `estado`) VALUES
+(8, 'Dragòn rojo', '2017-08-05', '2017-08-15', 8000, 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `info_asistente`
+--
+ALTER TABLE `info_asistente`
+  ADD PRIMARY KEY (`id_asistente`);
+
+--
+-- Indexes for table `producto`
+--
+ALTER TABLE `producto`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `puntos`
+--
+ALTER TABLE `puntos`
+  ADD PRIMARY KEY (`IdPunto`);
+
+--
+-- Indexes for table `tacademia`
+--
+ALTER TABLE `tacademia`
+  ADD PRIMARY KEY (`id_academia`);
+
+--
+-- Indexes for table `talumno`
+--
+ALTER TABLE `talumno`
+  ADD PRIMARY KEY (`id_alumno`);
+
+--
+-- Indexes for table `talumnosxexhibicion`
+--
+ALTER TABLE `talumnosxexhibicion`
+  ADD PRIMARY KEY (`id_alumnosxexhibicion`);
+
+--
+-- Indexes for table `talumnosxfogueo`
+--
+ALTER TABLE `talumnosxfogueo`
+  ADD PRIMARY KEY (`id_alumnosxfogueo`);
+
+--
+-- Indexes for table `talumnosxtorneo`
+--
+ALTER TABLE `talumnosxtorneo`
+  ADD PRIMARY KEY (`id_alumnosxtorneo`);
+
+--
+-- Indexes for table `tbprofesor`
+--
+ALTER TABLE `tbprofesor`
+  ADD PRIMARY KEY (`id_profesor`);
+
+--
+-- Indexes for table `tbusuarios`
+--
+ALTER TABLE `tbusuarios`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
+-- Indexes for table `texhibicion`
+--
+ALTER TABLE `texhibicion`
+  ADD PRIMARY KEY (`id_exhibicion`);
+
+--
+-- Indexes for table `tfogueo`
+--
+ALTER TABLE `tfogueo`
+  ADD PRIMARY KEY (`id_fogueo`);
+
+--
+-- Indexes for table `tluagresxtoreno`
+--
+ALTER TABLE `tluagresxtoreno`
+  ADD PRIMARY KEY (`id_lugaresxtorneo`);
+
+--
+-- Indexes for table `tlugar`
+--
+ALTER TABLE `tlugar`
+  ADD PRIMARY KEY (`id_lugar`);
+
+--
+-- Indexes for table `tlugaresxexhibicion`
+--
+ALTER TABLE `tlugaresxexhibicion`
+  ADD PRIMARY KEY (`id_lugaresxexhibicion`);
+
+--
+-- Indexes for table `tlugaresxfogueo`
+--
+ALTER TABLE `tlugaresxfogueo`
+  ADD PRIMARY KEY (`id_lugaresxfogueo`);
+
+--
+-- Indexes for table `torganizacion`
+--
+ALTER TABLE `torganizacion`
+  ADD PRIMARY KEY (`id_organizacion`);
+
+--
+-- Indexes for table `torganizacionesxexhibicion`
+--
+ALTER TABLE `torganizacionesxexhibicion`
+  ADD PRIMARY KEY (`id_organizacionesxexhibicion`);
+
+--
+-- Indexes for table `torganizacionesxfogueo`
+--
+ALTER TABLE `torganizacionesxfogueo`
+  ADD PRIMARY KEY (`id_organizacionesxfogueo`);
+
+--
+-- Indexes for table `torganizacionesxtorneo`
+--
+ALTER TABLE `torganizacionesxtorneo`
+  ADD PRIMARY KEY (`id_organizacionesxtorneo`);
+
+--
+-- Indexes for table `tpatrocinador`
+--
+ALTER TABLE `tpatrocinador`
+  ADD PRIMARY KEY (`id_patrocinador`);
+
+--
+-- Indexes for table `tpatrocinadoresxexhibicion`
+--
+ALTER TABLE `tpatrocinadoresxexhibicion`
+  ADD PRIMARY KEY (`id_patrocinadoresxexhibicion`);
+
+--
+-- Indexes for table `tpatrocinadoresxfogueo`
+--
+ALTER TABLE `tpatrocinadoresxfogueo`
+  ADD PRIMARY KEY (`id_patrocinadoresxfogueo`);
+
+--
+-- Indexes for table `tpatrocinadoresxtorneo`
+--
+ALTER TABLE `tpatrocinadoresxtorneo`
+  ADD PRIMARY KEY (`id_patrocinadoresxtorneo`);
+
+--
+-- Indexes for table `ttorneo`
+--
+ALTER TABLE `ttorneo`
+  ADD PRIMARY KEY (`id_torneo`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `info_asistente`
+--
+ALTER TABLE `info_asistente`
+  MODIFY `id_asistente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+--
+-- AUTO_INCREMENT for table `producto`
+--
+ALTER TABLE `producto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `puntos`
+--
+ALTER TABLE `puntos`
+  MODIFY `IdPunto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+--
+-- AUTO_INCREMENT for table `tacademia`
+--
+ALTER TABLE `tacademia`
+  MODIFY `id_academia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+--
+-- AUTO_INCREMENT for table `talumno`
+--
+ALTER TABLE `talumno`
+  MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+--
+-- AUTO_INCREMENT for table `talumnosxexhibicion`
+--
+ALTER TABLE `talumnosxexhibicion`
+  MODIFY `id_alumnosxexhibicion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `talumnosxfogueo`
+--
+ALTER TABLE `talumnosxfogueo`
+  MODIFY `id_alumnosxfogueo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+--
+-- AUTO_INCREMENT for table `talumnosxtorneo`
+--
+ALTER TABLE `talumnosxtorneo`
+  MODIFY `id_alumnosxtorneo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+--
+-- AUTO_INCREMENT for table `tbprofesor`
+--
+ALTER TABLE `tbprofesor`
+  MODIFY `id_profesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `tbusuarios`
+--
+ALTER TABLE `tbusuarios`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `texhibicion`
+--
+ALTER TABLE `texhibicion`
+  MODIFY `id_exhibicion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+--
+-- AUTO_INCREMENT for table `tfogueo`
+--
+ALTER TABLE `tfogueo`
+  MODIFY `id_fogueo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+--
+-- AUTO_INCREMENT for table `tluagresxtoreno`
+--
+ALTER TABLE `tluagresxtoreno`
+  MODIFY `id_lugaresxtorneo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `tlugar`
+--
+ALTER TABLE `tlugar`
+  MODIFY `id_lugar` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+--
+-- AUTO_INCREMENT for table `tlugaresxexhibicion`
+--
+ALTER TABLE `tlugaresxexhibicion`
+  MODIFY `id_lugaresxexhibicion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `tlugaresxfogueo`
+--
+ALTER TABLE `tlugaresxfogueo`
+  MODIFY `id_lugaresxfogueo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+--
+-- AUTO_INCREMENT for table `torganizacion`
+--
+ALTER TABLE `torganizacion`
+  MODIFY `id_organizacion` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+--
+-- AUTO_INCREMENT for table `torganizacionesxexhibicion`
+--
+ALTER TABLE `torganizacionesxexhibicion`
+  MODIFY `id_organizacionesxexhibicion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `torganizacionesxfogueo`
+--
+ALTER TABLE `torganizacionesxfogueo`
+  MODIFY `id_organizacionesxfogueo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT for table `torganizacionesxtorneo`
+--
+ALTER TABLE `torganizacionesxtorneo`
+  MODIFY `id_organizacionesxtorneo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `tpatrocinador`
+--
+ALTER TABLE `tpatrocinador`
+  MODIFY `id_patrocinador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+--
+-- AUTO_INCREMENT for table `tpatrocinadoresxexhibicion`
+--
+ALTER TABLE `tpatrocinadoresxexhibicion`
+  MODIFY `id_patrocinadoresxexhibicion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `tpatrocinadoresxfogueo`
+--
+ALTER TABLE `tpatrocinadoresxfogueo`
+  MODIFY `id_patrocinadoresxfogueo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT for table `tpatrocinadoresxtorneo`
+--
+ALTER TABLE `tpatrocinadoresxtorneo`
+  MODIFY `id_patrocinadoresxtorneo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `ttorneo`
+--
+ALTER TABLE `ttorneo`
+  MODIFY `id_torneo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
