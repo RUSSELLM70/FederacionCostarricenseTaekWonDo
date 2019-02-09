@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Ingresar patrocinador</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/stylePatrocinador.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/alertify.core.css" />
+  <link rel="stylesheet" href="css/alertify.default.css"/>
+   <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<link rel="icon" href="./img/logo.jpg">
+</head>
+
+<body>
+
+    <header>
+
+      <div class="containerHeader">
+
+
+        <div class="home">
+
+    <a href="homeAdministrador.html"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
+        </div>
+        <nav class="menu">
+          <ul class="clearfix">
+
+            <li>
+              <a href="#">Registrar usuarios <span class="arrow">&#9660;</span></a>
+
+              <ul class="sub-menu">
+                <li><a href="registrarAsistente.html">Registrar asistente</a></li>
+                <li><a href="ingresarProfesor.html">Registrar profesor</a></li>
+                <li><a href="ingresarAlumno.html">Registrar alumno</a></li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="#">Registrar eventos <span class="arrow">&#9660;</span></a>
+
+              <ul class="sub-menu">
+                <li><a href="ingresarTorneo.html">Registrar torneo</a></li>
+                <li><a href="ingresarFogueo.html">Registrar fogueo</a></li>
+                <li><a href="ingresarExhibicion.html">Registrar exhibición</a></li>
+              </ul>
+            </li>
+            <li><a href="ingresarAcademia.html">Registrar academia</a></li>
+            <li><a href="indexLugar.html  ">Registrar lugar</a></li>
+            <li class="current-item"><a href="indexOrganizacion.html">Registrar organización</a></li>
+            <li><a href="ingresarPatrocinador.html">Registrar patrocinador</a></li>
+
+            <li>
+              <a href="#">Listar <span class="arrow">&#9660;</span></a>
+
+              <ul class="sub-menu">
+                  <li><a href="listarAsistente.html">Listar asistentes</a></li>
+                <li><a href="listarProfesor.html">Listar profesores</a></li>
+                <li><a href="listarAlumno.html">Listar alumnos</a></li>
+                <li><a href="listarLug.html">Listar lugares</a></li>
+                <li><a href="listarOrg.html">Listar organizaciones</a></li>
+                <li><a href="listarPatrocinador.html">Listar patrocinadores</a></li>
+                <li><a href="listarAcademia.html">Listar academias</a></li>
+                <li><a href="listarTorneo.html">Listar Torneos</a></li>
+                <li><a href="listarExhibicion.html">Listar Exhibiciones</a></li>
+                <li><a href="listarFogueo.html">Listar Fogueos</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+    </header>
+   <main>
+     <div class="container">
+
+       <h1 id="h2Titulo">Registrar patrocinador</h1>
+
+       <div class="container1">
+
+         <form class="form">
+
+           <input type="text" hidden id="txtID">
+
+   					<div class="Patrocinador" >
+               <label>Nombre del patrocinador </</label>
+     					<input type="text" id="txtNombre">
+     				</div>
+
+
+             <div class="Profesor" >
+     					<label>Nombre de la sociedad anónima </label>
+     					<input type="text" id="txtSocA">
+     				</div>
+
+
+             <div class="Correo">
+     					<label>Correo electrónico</label>
+     					<input type="text" id="txtCorreo" placeholder="ejemplo@ejemplo.com">
+     				</div>
+
+            <div class="Tipo">
+              <label for="sltTipo">Tipo de patrocinio</label><br>
+              <select id="sltTipo">
+                <option disabled selected value>Elegir un tipo de patrocinio</option>
+                <option value="Dinero">Dinero</option>
+                <option value="Equipo">Equipo</option>
+                <option value="Alimentación">Alimentación</option>
+
+              </select>
+            </div>
+
+
+   				</form>
+
+   </div>
+   <div class="container2">
+
+   				<form class="form">
+
+            <div class="Telefono">
+              <label> Teléfono </label>
+              <input type="text" id="txtTel">
+            </div>
+
+            <div class="Monto">
+              <label>Monto</label>
+              <input type="number" id="txtMonto">
+            </div>
+
+             <div class="Descripcion">
+               <label>Descripción del producto</label>
+               <TEXTAREA  id="txtDesc" COLS=70 ROWS=10 NAME="Text"></TEXTAREA>
+
+             </div>
+
+
+
+     	   </form>
+   </div>
+         <div class="cf"></div>
+
+   <div class="container3">
+
+         			<form class="btnRegistrarP">
+         				<input type="button" id="btnRegistrarP" value="Guardar">
+         			</form>
+
+   </div>
+
+   </div>
+
+   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+   <script src="js/logicaNegociosIngresarPatrocinador.js"></script>
+   <script type="text/javascript" src="lib/alertify.js"></script>
+   <script src="js/logicaInterfazIngresarPatrocinador.js"></script>
+
+</main>
+</body>
+
+</html>

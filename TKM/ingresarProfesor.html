@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Registrar profesor</title>
+  <link rel="stylesheet" type="text/css" href="css/styleIngresarProfesor_Academia.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/alertify.core.css" />
+  <link rel="stylesheet" href="css/alertify.default.css" />
+<link rel="icon" href="./img/logo.jpg">
+</head>
+
+<body>
+
+
+    <header>
+
+      <div class="containerHeader">
+
+
+        <div class="home">
+
+    <a href="homeAdministrador.html"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
+        </div>
+        <nav class="menu">
+          <ul class="clearfix">
+
+            <li>
+              <a href="#">Registrar usuarios <span class="arrow">&#9660;</span></a>
+
+              <ul class="sub-menu">
+                <li><a href="registrarAsistente.html">Registrar asistente</a></li>
+                <li><a href="ingresarProfesor.html">Registrar profesor</a></li>
+                <li><a href="ingresarAlumno.html">Registrar alumno</a></li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="#">Registrar eventos <span class="arrow">&#9660;</span></a>
+
+              <ul class="sub-menu">
+                <li><a href="ingresarTorneo.html">Registrar torneo</a></li>
+                <li><a href="ingresarFogueo.html">Registrar fogueo</a></li>
+                <li><a href="ingresarExhibicion.html">Registrar exhibición</a></li>
+              </ul>
+            </li>
+            <li><a href="ingresarAcademia.html">Registrar academia</a></li>
+            <li><a href="indexLugar.html  ">Registrar lugar</a></li>
+            <li class="current-item"><a href="indexOrganizacion.html">Registrar organización</a></li>
+            <li><a href="ingresarPatrocinador.html">Registrar patrocinador</a></li>
+
+            <li>
+              <a href="#">Listar <span class="arrow">&#9660;</span></a>
+
+              <ul class="sub-menu">
+                  <li><a href="listarAsistente.html">Listar asistentes</a></li>
+                <li><a href="listarProfesor.html">Listar profesores</a></li>
+                <li><a href="listarAlumno.html">Listar alumnos</a></li>
+                <li><a href="listarLug.html">Listar lugares</a></li>
+                <li><a href="listarOrg.html">Listar organizaciones</a></li>
+                <li><a href="listarPatrocinador.html">Listar patrocinadores</a></li>
+                <li><a href="listarAcademia.html">Listar academias</a></li>
+                <li><a href="listarTorneo.html">Listar Torneos</a></li>
+                <li><a href="listarExhibicion.html">Listar Exhibiciones</a></li>
+                <li><a href="listarFogueo.html">Listar Fogueos</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+    </header>
+  <div class="container">
+    <div class="titulo">
+      <h1 id="h2Titulo">Registrar profesor</h1>
+    </div>
+    <div class="clearFix"></div>
+    <div class="container1">
+
+      <form name="form">
+
+
+        <div class="Academia">
+          <label for="selectAcademia">Seleccionar academia</label>
+          <select id="selectAcademia" class='classSelect'>
+
+
+          </select>
+
+        </div>
+
+        <div class="Nombre">
+          <label for="txtNombre">Nombre</label>
+          <input type="text" id="txtNombre">
+        </div>
+        <div class="Nombre">
+          <label for="txtNombre2">Segundo nombre</label>
+          <input type="text" id="txtNombre2" placeholder="Opcional...">
+        </div>
+
+        <div class="Apellido1">
+          <label for="txtApellido1">Primer apellido</label>
+          <input type="text" id="txtApellido1">
+        </div>
+
+        <div class="Apellido2">
+          <label for="txtApellido2">Segundo apellido</label>
+          <input type="text" id="txtApellido2">
+        </div>
+
+
+    </div>
+
+    <div class="container2">
+
+      <div class="cedula">
+        <label for="txtCedula">Cédula</label>
+        <input type="text" id="txtCedula">
+      </div>
+      <div class="Telefono">
+        <label for="txtTelefono">Teléfono</label>
+        <input type="text" id="txtTelefono">
+      </div>
+
+      <div class="Correo">
+        <label for="txtCorreo">Correo electrónico</label>
+        <input type="text" id="txtCorreo" placeholder="ejemplo@ejemplo.com">
+        <label for="txtCorreo" id="txtForCorreo"class="hidden">*Este correo se encuentra registrado</label>
+      </div>
+
+      <div class="genero">
+        <label>Género</label>
+        <select id="sltGenero">
+          <option value="">--Seleccione un género--</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+        </select>
+      </div>
+
+      <div class="Fecha">
+        <label>Fecha de nacimiento</label>
+        <input type="date" id="txtFecha">
+      </div>
+    </div>
+
+    <div class="cf"></div>
+
+    <div class="container3">
+      <input type="button" id="btnRegistrarProfesor" value="Guardar">
+    </div>
+    </form>
+
+  </div>
+  </div>
+
+  <div class="clearFix"></div>
+  <script src="js/verificacionSesiones.js"></script>
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/logicaNegociosProfesor.js"></script>
+  <script type="text/javascript" src="lib/alertify.js"></script>
+  <script src="js/logicaInterfazProfesor.js"></script>
+  </form>
+</body>
+
+</html>

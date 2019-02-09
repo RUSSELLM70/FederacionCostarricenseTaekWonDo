@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Listar exhibiciones</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/styleListarExhibicion.css">
+  <link rel="stylesheet" href="css/alertify.core.css" />
+  <link rel="stylesheet" href="css/alertify.default.css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<link rel="icon" href="./img/logo.jpg">
+</head>
+
+<body>
+
+    <header>
+
+      <div class="containerHeader">
+
+
+        <div class="home">
+
+    <a href="homeAdministrador.html"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
+        </div>
+        <nav class="menu">
+          <ul class="clearfix">
+
+            <li>
+              <a href="#">Registrar usuarios <span class="arrow">&#9660;</span></a>
+
+              <ul class="sub-menu">
+                <li><a href="registrarAsistente.html">Registrar asistente</a></li>
+                <li><a href="ingresarProfesor.html">Registrar profesor</a></li>
+                <li><a href="ingresarAlumno.html">Registrar alumno</a></li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="#">Registrar eventos <span class="arrow">&#9660;</span></a>
+
+              <ul class="sub-menu">
+                <li><a href="ingresarTorneo.html">Registrar torneo</a></li>
+                <li><a href="ingresarFogueo.html">Registrar fogueo</a></li>
+                <li><a href="ingresarExhibicion.html">Registrar exhibición</a></li>
+              </ul>
+            </li>
+            <li><a href="ingresarAcademia.html">Registrar academia</a></li>
+            <li><a href="indexLugar.html  ">Registrar lugar</a></li>
+            <li class="current-item"><a href="indexOrganizacion.html">Registrar organización</a></li>
+            <li><a href="ingresarPatrocinador.html">Registrar patrocinador</a></li>
+
+            <li>
+              <a href="#">Listar <span class="arrow">&#9660;</span></a>
+
+              <ul class="sub-menu">
+                  <li><a href="listarAsistente.html">Listar asistentes</a></li>
+                <li><a href="listarProfesor.html">Listar profesores</a></li>
+                <li><a href="listarAlumno.html">Listar alumnos</a></li>
+                <li><a href="listarLug.html">Listar lugares</a></li>
+                <li><a href="listarOrg.html">Listar organizaciones</a></li>
+                <li><a href="listarPatrocinador.html">Listar patrocinadores</a></li>
+                <li><a href="listarAcademia.html">Listar academias</a></li>
+                <li><a href="listarTorneo.html">Listar Torneos</a></li>
+                <li><a href="listarExhibicion.html">Listar Exhibiciones</a></li>
+                <li><a href="listarFogueo.html">Listar Fogueos</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+    </header>
+
+  <div class="container">
+    <h1>Listar exhibición</h1>
+
+
+
+
+
+
+    <div class="mostrar">
+
+      <div style="overflow-x:auto;">
+
+
+            <input type="text" id="filtro" onkeyup="imprimirTablaConFiltro()" placeholder="Buscar...">
+
+
+            <div class="search">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+
+
+
+          <table id="tblListar">
+
+            <thead>
+              <tr>
+                <th>Nombre del evento</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha de fin</th>
+                <th>Precio entradas</th>
+                <th>Invitado especial</th>
+                <th>Lugar</th>
+                <th>Organización</th>
+                <th>Patrocinador</th>
+                <th>Alumnos</th>
+                <th>Asignar</th>
+                <th>Modificar</th>
+                <th>Cancelar</th>
+
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+
+        </div>
+  </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+   <script src="lib/alertify.js"></script>
+    <script src="js/logicaNegociosListarExhibicion.js"></script>
+    <script src="js/logicaNegociosAsignarAExhibicion.js"></script>
+    <script type="text/javascript" src="lib/alertify.js"></script>
+    <script src="js/logicaInterfazListarExhibicion.js"></script>
+
+</body>
+
+</html>

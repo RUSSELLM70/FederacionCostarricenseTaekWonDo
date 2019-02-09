@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Ingresar Torneo</title>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/styleIngresarTorneo.css">
+  <link rel="stylesheet" href="css/alertify.core.css" />
+  <link rel="stylesheet" href="css/alertify.default.css" />
+
+</head>
+
+<body>
+
+
+    <header>
+
+      <div class="containerHeader">
+
+
+        <div class="home">
+
+    <a href="homeAdministrador.html"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
+        </div>
+        <nav class="menu">
+          <ul class="clearfix">
+
+            <li>
+              <a href="#">Registrar usuarios <span class="arrow">&#9660;</span></a>
+
+              <ul class="sub-menu">
+                <li><a href="registrarAsistente.html">Registrar asistente</a></li>
+                <li><a href="ingresarProfesor.html">Registrar profesor</a></li>
+                <li><a href="ingresarAlumno.html">Registrar alumno</a></li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="#">Registrar eventos <span class="arrow">&#9660;</span></a>
+
+              <ul class="sub-menu">
+                <li><a href="ingresarTorneo.html">Registrar torneo</a></li>
+                <li><a href="ingresarFogueo.html">Registrar fogueo</a></li>
+                <li><a href="ingresarExhibicion.html">Registrar exhibición</a></li>
+              </ul>
+            </li>
+            <li><a href="ingresarAcademia.html">Registrar academia</a></li>
+            <li><a href="indexLugar.html  ">Registrar lugar</a></li>
+            <li class="current-item"><a href="indexOrganizacion.html">Registrar organización</a></li>
+            <li><a href="ingresarPatrocinador.html">Registrar patrocinador</a></li>
+
+            <li>
+              <a href="#">Listar <span class="arrow">&#9660;</span></a>
+
+              <ul class="sub-menu">
+                  <li><a href="listarAsistente.html">Listar asistentes</a></li>
+                <li><a href="listarProfesor.html">Listar profesores</a></li>
+                <li><a href="listarAlumno.html">Listar alumnos</a></li>
+                <li><a href="listarLug.html">Listar lugares</a></li>
+                <li><a href="listarOrg.html">Listar organizaciones</a></li>
+                <li><a href="listarPatrocinador.html">Listar patrocinadores</a></li>
+                <li><a href="listarAcademia.html">Listar academias</a></li>
+                <li><a href="listarTorneo.html">Listar Torneos</a></li>
+                <li><a href="listarExhibicion.html">Listar Exhibiciones</a></li>
+                <li><a href="listarFogueo.html">Listar Fogueos</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+    </header>
+  <main>
+    <section>
+      <div class="container">
+
+        <h1 id="h2Titulo">Asignar fogueo</h1>
+
+        <div class="container1">
+
+          <form class="form">
+
+            <div class="lugar">
+              <label>Lugar del evento</label>
+              <select id="selectLugar"></select>
+              <input type="button" id="btnAsignarLugar" value="Asignar Lugar" class='classSelect'>
+              <table id="tblListaLugaresAgregados">
+                <tbody>
+
+                </tbody>
+              </table>
+            </div>
+
+            <div class="patrocinador">
+              <label>Patrocinadores</label>
+              <select id="selectPatrocinador">
+                <input type="button" id="btnAsignarPatrocinador" value="Asignar Patrocinador" class='classSelect'>
+                <table id="tblListaPatrocinadoresAgregados">
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </select>
+            </div>
+            </form>
+            </div>
+        <div class="container2">
+        <form class="form">
+            <div class="organizacion">
+              <label>Organizacion beneficiada</label>
+              <select id="selectOrganizacion">
+                <input type="button" id="btnAsignarOrganizacion" value="Asignar Organizacion" class='classSelect'>
+                <table id="tblListaOrganizacionesAgregadas">
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </select>
+            </div>
+
+            <div class="lugar">
+              <label>Alumnos</label>
+              <select id="selectAlumnos"></select>
+              <input type="button" id="btnAsignarAlumnos" value="Asignar Alumnos" class='classSelect'>
+              <table id="tblListaAlumnosAgregados">
+                <tbody>
+
+                </tbody>
+              </table>
+            </div>
+
+          </form>
+          </div>
+
+          <div class="cf"></div>
+          <div class="container3">
+             <form class="buttonFinalziar">
+          <input type="button" id="btnFinalizarAsignar" value="Finalizar Asignar">
+          </form>
+          </div>
+          </div>
+          </section>
+  </main>
+  <script src="js/verificacionSesiones.js"></script>
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="lib/alertify.js"></script>
+  <script src="js/logicaNegociosAsigarAEventosFogueos.js"></script>
+  <script src="js/logicaInterfazAsignarAFogueo.js"></script>
+
+
+</body>
+
+</html>

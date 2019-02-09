@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Asistente</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/styleIngresarAsistente.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/alertify.core.css" />
+  <link rel="stylesheet" href="css/alertify.default.css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+<link rel="icon" href="./img/logo.jpg">
+</head>
+
+<body>
+
+    <header>
+
+      <div class="containerHeader">
+
+
+        <div class="home">
+
+    <a href="homeAdministrador.html"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
+        </div>
+        <nav class="menu">
+          <ul class="clearfix">
+
+            <li>
+              <a href="#">Registrar usuarios <span class="arrow">&#9660;</span></a>
+
+              <ul class="sub-menu">
+                <li><a href="registrarAsistente.html">Registrar asistente</a></li>
+                <li><a href="ingresarProfesor.html">Registrar profesor</a></li>
+                <li><a href="ingresarAlumno.html">Registrar alumno</a></li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="#">Registrar eventos <span class="arrow">&#9660;</span></a>
+
+              <ul class="sub-menu">
+                <li><a href="ingresarTorneo.html">Registrar torneo</a></li>
+                <li><a href="ingresarFogueo.html">Registrar fogueo</a></li>
+                <li><a href="ingresarExhibicion.html">Registrar exhibición</a></li>
+              </ul>
+            </li>
+            <li><a href="ingresarAcademia.html">Registrar academia</a></li>
+            <li><a href="indexLugar.html  ">Registrar lugar</a></li>
+            <li class="current-item"><a href="indexOrganizacion.html">Registrar organización</a></li>
+            <li><a href="ingresarPatrocinador.html">Registrar patrocinador</a></li>
+
+            <li>
+              <a href="#">Listar <span class="arrow">&#9660;</span></a>
+
+              <ul class="sub-menu">
+                  <li><a href="listarAsistente.html">Listar asistentes</a></li>
+                <li><a href="listarProfesor.html">Listar profesores</a></li>
+                <li><a href="listarAlumno.html">Listar alumnos</a></li>
+                <li><a href="listarLug.html">Listar lugares</a></li>
+                <li><a href="listarOrg.html">Listar organizaciones</a></li>
+                <li><a href="listarPatrocinador.html">Listar patrocinadores</a></li>
+                <li><a href="listarAcademia.html">Listar academias</a></li>
+                <li><a href="listarTorneo.html">Listar Torneos</a></li>
+                <li><a href="listarExhibicion.html">Listar Exhibiciones</a></li>
+                <li><a href="listarFogueo.html">Listar Fogueos</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+    </header>
+  <div class="container">
+    <div class="tituloAcademia">
+      <h1 id="h2Titulo">Registrar asistentes</h1>
+    </div>
+    <div class="container">
+      <div class="container1">
+        <form class="form">
+
+
+          <div class="nombre">
+            <label for="txtNombreAsistente">Nombre </label><br>
+            <input type="text" id="txtNombreAsistente"><br>
+          </div>
+
+
+
+
+
+              <div class="primerApellido">
+            <label>Primer apellido</label>
+            <input type="text" id="txtApellidoUnoAsistente">
+          </div>
+
+
+          <div class="apellidoDos">
+            <label for="txtApellidoDosAsistente">Segundo apellido</label><br>
+            <input type="text" id="txtApellidoDosAsistente"><br>
+          </div>
+
+
+          <div class="correo">
+            <label>Correo electrónico </label>
+            <input type="text" id="txtCorreoAsistente" placeholder="ejemplo@ejemplo.com">
+          </div>
+
+
+        </form>
+      </div>
+
+      <div class="container2">
+        <form class="form">
+
+
+
+          <div class="cedula">
+            <label>Cédula</label>
+            <input type="text" id="txtCedulaAsistente">
+          </div>
+
+
+
+          <div class="telefono">
+            <label for="txtTelefonoAsistente">Teléfono</label><br>
+            <input type="number" id="txtTelefonoAsistente"><br>
+          </div>
+
+
+          <div class="genero">
+            <label>Género</label>
+            <select id="sltGenero">
+                <option value="">Seleccione un género</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+              </select>
+          </div>
+
+
+          <div class="fechaNacimiento">
+            <label for="txtFechaAsistente">Fecha de nacimiento  </label><br>
+            <input type="date" id="txtFechaAsistente"><br>
+          </div>
+          <!-- <input type="text" id="txtID" class="estiloID"><br> -->
+        </form>
+      </div>
+
+      <div class="clearFixf"></div>
+
+      <div class="container3">
+
+        <form class="btnAsistente">
+          <input type="button" id="btnRegistrarAsistente" value="Guardar">
+
+
+      </div>
+    </div>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
+    <script src="js/logicaNegociosAsistente.js"></script>
+    <script type="text/javascript" src="lib/alertify.js"></script>
+    <script src="js/logicaInterfazAsistente.js"></script>
+</body>
+
+</html>
+
+
+
+<!-- <div class="clearFix"></div>
+    <div class="tabla">
+      <table id="tblListarAsistente">
+        <thead>
+          <tr>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Primer Apellido</th>
+            <th>Segundo Apellido</th>
+            <th>Correo Electrónico</th>
+            <th>Teléfono</th>
+            <th>Género</th>
+            <th>Fecha de Naciemiento</th>
+            <th>Modificar</th>
+            <th>Activar</th>
+            <th>Desactivar</th>
+          </tr>
+        </thead>
+      </table>
+    </div> -->

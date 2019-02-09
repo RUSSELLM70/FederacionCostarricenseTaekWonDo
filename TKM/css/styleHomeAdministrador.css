@@ -1,0 +1,535 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body{
+	background-color: #f3f3f3;
+}
+
+header{
+	width: 100%;
+	height: 70px;
+	background-color: #191919;
+}
+
+.containerHeader{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.inicio{
+    float: right;
+    margin-top: 10px;
+}
+.hidden{
+	display: none;
+}
+.menuSesion{
+    background-color: #66b0cd;
+    padding: 3px 10px;
+    color: white;
+    margin-top: 13px;
+    border-radius: 3px;
+    padding-bottom: px;
+}
+
+.menuSesion:hover{
+    color: #000;
+}
+
+/*Inicio menu navegación*//*----------------------------------*/
+.clearfix:after {
+    display:block;
+    clear:both;
+}
+
+.menu{
+    float: left;
+    margin-top: 10px;
+
+
+}
+
+.menu i{
+    font-size: 28px;
+}
+
+/*----- Menu Outline -----*/
+
+
+.menu li {
+    margin:0px;
+    list-style:none;
+}
+
+.menu a:hover {
+ color: #cdd1d2;
+}
+
+.menu a {
+   /* transition:all linear 0.15s;*/
+   color: white;
+}
+
+.arrow{
+    width: 10px;
+}
+
+.menu .arrow {
+    font-size:11px;
+    line-height:0%;
+}
+
+/*----- Top Level -----*/
+.menu > ul > li {
+    float:left;
+    display:inline-block;
+    position:relative;
+    font-size:16px;
+}
+
+.menu > ul > li > a {
+    padding:10px 25px;
+    display:inline-block;
+
+}
+
+/*.menu > ul > li:hover > a, .menu > ul > .current-item > a {
+    background:#2e2728;
+}*/
+
+/*----- Bottom Level -----*/
+.menu li:hover .sub-menu {
+    z-index:1;
+    opacity:1;
+}
+
+.sub-menu {
+    width:300px;
+    padding:5px 0px;
+    position:absolute;
+    top:100%;
+    left:0px;
+    z-index:-1;
+    opacity:0;
+    transition:opacity linear 0.15s;
+    box-shadow:0px 2px 3px rgba(0,0,0,0.2);
+    background:#191919;
+
+}
+
+.sub-menu li {
+    display:block;
+    font-size:13px;
+    color: black;
+}
+
+.sub-menu li a {
+    padding:10px 30px;
+    display:block;
+}
+
+.sub-menu li a:hover, .sub-menu .current-item a {
+    background:#cdd1d2;
+    color: black;
+}
+
+
+a{
+	text-decoration: none;
+}
+
+i{
+	color: white;
+}
+
+li{
+    list-style: none;
+}
+
+.cf{
+    clear: both;
+}
+
+.banner{
+    background-color: lightgray;
+    height: 900px;
+}
+
+.mainSect img{
+    width: 100%;
+    height: 900px;
+    /*background-color: rgba(211, 211, 211, 0.9);*/
+}
+
+/*Inicio Animacion banner*//*------------------------------------------------------------*/
+.content-img{
+    width: 100%;
+    height: 900px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.content-img img{
+    width: 100%;
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+}
+
+.content-1{
+  /*  width: 1000px; asi estaba y aparecia el borde*/
+  /*width: 100px;  se implementa de esta medida para desaparecer el borde azul*/
+    width: 100px;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    background: rgba(102,176,205,0.5);
+    -webkit-transform: rotate(-30deg);
+    transform: rotate(-30deg);
+    margin-left: -750px;
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+}
+
+.content-2{
+  /*  width: 1000px; asi estaba y aparecia el borde*/
+  /*width: 100px;  se implementa de esta medida para desaparecer el borde azul*/
+    width: 100px;
+    height: 1000px;
+    position: absolute;
+    top: 0;
+	    background:rgba(0, 8, 31, 0.69);
+    -webkit-transform: rotate(-30deg);
+    transform: rotate(-30deg);
+    margin-left: -800px;
+    -webkit-transition: all 500ms;
+    transition: all 500ms;
+}
+
+.content-3{
+  /*  width: 1000px; asi estaba y aparecia el borde*/
+  /*width: 100px;  se implementa de esta medida para desaparecer el borde azul*/
+    width: 100px;
+    height: 1000px;
+    position: absolute;
+    top: 0;
+    background:rgba(0, 8, 31, 0.69);
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+    margin-left: -800px;
+    margin-top: -500px;
+    -webkit-transition: all 900ms;
+    transition: all 900ms;
+    -webkit-box-shadow: 0px 1px 20px -5px black;
+    box-shadow: 0px 1px 20px -5px black;
+}
+
+.content-4{
+  /*  width: 1000px; asi estaba y aparecia el borde*/
+  /*width: 100px;  se implementa de esta medida para desaparecer el borde azul*/
+    width: 100px;
+    height: 1000px;
+    position: absolute;
+    top: 0;
+    background: rgba(0, 8, 31, 0.88);
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+    margin-left: -850px;
+    margin-top: -500px;
+    -webkit-transition: all 700ms;
+    transition: all 700ms;
+}
+
+.content-img:hover .content-1{
+    width: 100%;
+    -webkit-transition: all 900ms;
+    transition: all 900ms;
+}
+
+.content-img:hover .content-2{
+    width: 100%;
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+}
+
+.content-img:hover .content-3{
+    width: 100%;
+    -webkit-transition: all 500ms;
+    transition: all 500ms;
+}
+
+.content-img:hover .content-4{
+    width: 100%;
+    -webkit-transition: all 700ms;
+    transition: all 700ms;
+}
+
+.content-img:hover img{
+   /* -webkit-transform: scale(1.5);*/
+    /*transform: scale(1.5);*/
+    /*-webkit-transition: all 300ms;
+    transition: all 300ms;
+    opacity: ;*/
+}
+
+.content-txt{
+    position: absolute;
+    top: 0;
+    width: 400px;
+    padding: 10px;
+    z-index: 10;
+    color: white;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.content-txt h1{
+    font-size: 42px;
+    opacity: 0;
+    -webkit-transform: scale(0.2);
+    transform: scale(0.2);
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+    color: white;
+}
+
+.content-txt img{
+    font-size: 20px;
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;
+    opacity: 0;
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+}
+
+.content-img:hover h1{
+    opacity: 1;
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.content-img:hover p{
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: all 500ms;
+    transition: all 500ms;
+}
+/*Fin Animacion banner*//*------------------------------------------------------------*/
+
+
+.perfil{
+    width: 30%;
+    height: 700px;
+    background-color: #dddddd;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    float: left;
+    box-shadow: 1px 1px 1px 1px #bcbcbc;
+}
+
+.registrar{
+    width: 68%;
+    height: 700px;
+    background-color: #dddddd;
+    float: right;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 1px 1px 1px 2px #bcbcbc;
+}
+
+/*.listar{
+    width: 100%;
+    height: 450px;
+    background-color: #dddddd;
+    margin-top: 30px;
+    box-shadow: 1px 1px 1px 1px #bcbcbc;
+}*/
+
+.label{
+    width: 100%;
+    height: 80px;
+    background-color: #191919;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+     box-shadow: 1px 1px 1px 1px #bcbcbc;
+}
+
+.label h1{
+    padding-top: 25px;
+}
+
+.foto{
+    width: 46%;
+    background-color: gray;
+    height: 200px;
+    border-radius: 360px;
+    margin-left: 120px;
+    margin-top: 30px;
+}
+
+/*.foto h3{
+  padding-top: 85px;
+  padding-left: 63px;
+  color: white;
+}*/
+
+.foto img{
+    width: 100%;
+    height: 200px;
+    border-radius: 360px;
+}
+
+.infoPerfil1{
+    width: 65%;
+    margin-top: 60px;
+    margin-left: 55px;
+    background-color: #d4d5d6;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px #bcbcbc;
+
+}
+
+.infoPerfil1 li{
+    margin-bottom: 20px;
+}
+
+.infoPerfil1 span{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+/*.infoPerfil2{
+    margin-top: 40px;
+    margin-left: 100px;
+    float: right;
+
+}
+
+.infoPerfil2 li{
+    margin-top: 20px;
+}*/
+
+.botones1{
+    float: left;
+    width: 40%;
+    height: 450px;
+    padding-top: 15px;
+    padding-left: 60px;
+    margin-top: 60px;
+   /* border:solid 1px black;*/
+}
+
+.botones1 ul{
+    text-align: center;
+}
+
+
+.botones1 li{
+    background-color: #2c3e50;
+    padding: 20px 90px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+}
+
+.botones2{
+    float: right;
+    width: 40%;
+    height: 450px;
+    padding-top: 15px;
+    padding-right: 60px;
+    margin-top: 60px;
+   /* border:solid 1px black;*/
+}
+
+.botones2 ul{
+    text-align: center;
+}
+
+
+.botones2 li{
+    background-color: #2c3e50;
+    padding: 20px 90px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    color: white;
+}
+
+.botones1 li:hover{
+    background-color: #34495e;
+}
+
+.botones2 li:hover{
+    background-color: #34495e;
+}
+
+.btnlistar1{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.btnlistar1 li{
+ float: left;
+   background-color: lightblue;
+    padding: 20px 90px;
+    margin-left: 20px;
+    margin-top: 90px;
+    border-radius: 8px;
+    font-size: 16px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.btnlistar1 li:hover{
+    background-color: lightyellow;
+}
+
+.btnlistar2{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.btnlistar2 li{
+ float: left;
+   background-color: lightblue;
+    padding: 20px 90px;
+    margin-left: 20px;
+    margin-top: 50px;
+    border-radius: 8px;
+    font-size: 16px;
+    color: black;
+}
+
+.btnlistar2 li:hover{
+    background-color: lightyellow;
+}

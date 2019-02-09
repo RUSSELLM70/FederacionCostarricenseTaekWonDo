@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registrar alumno</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/styleAlumno.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/alertify.core.css" />
+  <link rel="stylesheet" href="css/alertify.default.css" />
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<link rel="icon" href="./img/logo.jpg">
+</head>
+<body>
+
+	  <header>
+
+	    <div class="containerHeader">
+
+
+	      <div class="home">
+
+	  <a href="homeAdministrador.html"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
+	      </div>
+	      <nav class="menu">
+	        <ul class="clearfix">
+
+	          <li>
+	            <a href="#">Registrar usuarios <span class="arrow">&#9660;</span></a>
+
+	            <ul class="sub-menu">
+	              <li><a href="registrarAsistente.html">Registrar asistente</a></li>
+	              <li><a href="ingresarProfesor.html">Registrar profesor</a></li>
+	              <li><a href="ingresarAlumno.html">Registrar alumno</a></li>
+	            </ul>
+	          </li>
+
+	          <li>
+	            <a href="#">Registrar eventos <span class="arrow">&#9660;</span></a>
+
+	            <ul class="sub-menu">
+	              <li><a href="ingresarTorneo.html">Registrar torneo</a></li>
+	              <li><a href="ingresarFogueo.html">Registrar fogueo</a></li>
+	              <li><a href="ingresarExhibicion.html">Registrar exhibición</a></li>
+	            </ul>
+	          </li>
+	          <li><a href="ingresarAcademia.html">Registrar academia</a></li>
+	          <li><a href="indexLugar.html  ">Registrar lugar</a></li>
+	          <li class="current-item"><a href="indexOrganizacion.html">Registrar organización</a></li>
+	          <li><a href="ingresarPatrocinador.html">Registrar patrocinador</a></li>
+
+	          <li>
+	            <a href="#">Listar <span class="arrow">&#9660;</span></a>
+
+	            <ul class="sub-menu">
+	                <li><a href="listarAsistente.html">Listar asistentes</a></li>
+	              <li><a href="listarProfesor.html">Listar profesores</a></li>
+	              <li><a href="listarAlumno.html">Listar alumnos</a></li>
+	              <li><a href="listarLug.html">Listar lugares</a></li>
+	              <li><a href="listarOrg.html">Listar organizaciones</a></li>
+	              <li><a href="listarPatrocinador.html">Listar patrocinadores</a></li>
+	              <li><a href="listarAcademia.html">Listar academias</a></li>
+	              <li><a href="listarTorneo.html">Listar Torneos</a></li>
+	              <li><a href="listarExhibicion.html">Listar Exhibiciones</a></li>
+	              <li><a href="listarFogueo.html">Listar Fogueos</a></li>
+	            </ul>
+	          </li>
+	        </ul>
+	      </nav>
+	    </div>
+
+	  </header>
+<main>
+  <div class="container">
+
+    <h1 id="h2Titulo">Registrar alumno</h1>
+
+    <div class="container1">
+
+      <form class="form">
+
+        <input type="text" hidden id="txtID">
+
+
+          <div class="Academia">
+          <label for="txtAcademia">Seleccionar academia</label>
+          <select id="txtAcademia" class='classSelect'>
+
+
+          </select>
+
+        </div>
+
+        <div class="Profesor">
+          <label for="txtProfesor">Seleccionar profesor</label>
+          <select id="txtProfesor" class='classSelect'>
+
+
+          </select>
+
+        </div>
+
+        
+
+          <div class="Nombre">
+  					<label>Nombre</label>
+  					<input type="text" id="txtNombre">
+  				</div>
+
+
+          <div class="Primer">
+  					<label>Primer apellido</label>
+  					 <input type="text" id="txtPApellido">
+  				</div>
+
+          <div class="Segundo" >
+  					<label>Segundo apellido</label>
+  					<input type="text" id="txtSApellido">
+  				</div>
+
+          <div class="correo">
+  					<label>Correo electrónico</label>
+  					<input type="text" id="txtCorreo" placeholder="ejemplo@ejemplo.com">
+  				</div>
+
+          <div class="cedula">
+  					<label>Cédula</label>
+  					<input type="number" id="txtCedula">
+  				</div>
+
+          <div class="telefono">
+            <label>Teléfono</label>
+            <input type="number" id="txtTelefono">
+          </div>
+
+          <div class="edad">
+            <label>Edad</label>
+            <input type="number" id="txtEdad">
+          </div>
+
+					<div class="Genero">
+						<label for="sltGenero">Género</label>
+						<select id="sltGenero">
+							 <option disabled selected value>--Elija el género--</option>
+							<option value="Masculino">Masculino</option>
+							<option value="Femenino">Femenino</option>
+						</select>
+					</div>
+
+
+				</form>
+
+</div>
+<div class="container2">
+
+				<form class="form">
+					<div class="fecha">
+						<label>Fecha de nacimiento</label>
+						<input type="date" id="txtFecha">
+					</div>
+
+					<div class="peso">
+						<label>Peso</label>
+						<input type="number" id="txtPeso" placeholder="En kilogramos">
+					</div>
+
+
+          <div class="Altura">
+            <label>Altura</label>
+            <input type="number" id="txtAltura" placeholder="En metros" >
+          </div>
+
+          <div class="Grado">
+            <label for="sltGrado">Grado</label>
+            <select id="sltGrado">
+							<option disabled selected value>--Elija el grado--</option>
+              <option value="Blanco">Blanco</option>
+              <option value="Amarillo">Amarillo</option>
+              <option value="Verde">Verde</option>
+              <option value="Azul">Azul</option>
+              <option value="Rojo">Rojo</option>
+              <option value="Negro">Negro</option>
+            </select>
+          </div>
+
+          <div class="categoria edad">
+            <label for="sltCategoriaE">Categoría por edad</label>
+            <select id="sltCategoriaE">
+						 <option disabled selected value>--Elija la categoría por edad--</option>
+              <option value="Infantil">Infantil o junior: (4 a 11 años)</option>
+              <option value="Cadete">Cadete: (12 a 16 años)</option>
+              <option value="Elite">Elite: (17 a 23 años</option>
+              <option value="Senior">Senior: (mayores de 23 años)</option>
+            </select>
+          </div>
+
+          <div class="Categoria peso">
+            <label for="sltCategoriaP">Categoría por peso</label>
+            <select id="sltCategoriaP">
+						<option disabled selected value>--Elija la categoría por peso--</option>
+              <option value="Il-Yang"(pluma)>-51 kg</option>
+              <option value="I-Yang">52kg a 59 kg</option>
+              <option value="O-Yang ">60kg a 65 kg</option>
+              <option value="Sam-Yang ">66kg a 74 kg</option>
+              <option value="Siu-Yang" (Pesado)>+74 kg</option>
+            </select>
+          </div>
+
+          <div class="torneos participados">
+            <label>Cantidad de torneos participados</label>
+            <input type="number" id="txtCTP">
+          </div>
+
+          <div class="torneos ganados">
+            <label>Cantidad de torneos ganados</label>
+            <input type="number" id="txtCTG">
+          </div>
+
+          <div class="exhibiciones">
+            <label>Cantidad de exhibiciones participadas</label>
+            <input type="number" id="txtCEP">
+          </div>
+
+          <div class="Dirección">
+            <label>Dirección</label><br><br>
+						<TEXTAREA  id="txtDireccion" COLS=70 ROWS=10 NAME="Text"></TEXTAREA>
+
+          </div>
+
+
+  	   </form>
+</div>
+      <div class="cf"></div>
+
+<div class="container3">
+
+      			<form class="btnRegistrar">
+      				<input type="button" id="btnRegistrar" value="Guardar">
+      			</form>
+
+	</div>
+
+	</div>
+	<div class="clearFix"></div>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/logicaUsuarios.js"></script>
+	<script src="js/logicaNegociosIngresarAlumno.js"></script>
+	<script type="text/javascript" src="lib/alertify.js"></script>
+	<script src="js/logicaInterfazIngresarAlumno.js"></script>
+	</main>
+
+</body>
+
+</html>

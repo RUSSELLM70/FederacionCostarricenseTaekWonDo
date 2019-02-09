@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>Registar Lugar</title>
+  <link rel="stylesheet" href="css/alertify.core.css" />
+  <link rel="stylesheet" href="css/alertify.default.css" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styleLugares.css">
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBt2wWUdg5dG307doZDmM-uUWLty_0fmh0"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link rel="icon" href="./img/logo.jpg">
+
+  <style>
+    #mapa {
+      margin-top:  15px;
+
+      width: 580px;
+      height: 400px;
+      float: right;
+
+      background: green;
+    }
+/*
+    #infor {
+      width: 400px;
+      height: 400px;
+      float: left;
+
+    }
+    td{
+      color: #636363;
+      font-size: 22px;
+      width: 300px;
+    }
+    #select_resultados {
+   font-size: 18px;
+
+
+    }*/
+    #palabra_buscar{
+      width: 350px;
+    	height: 30px;
+
+
+    }
+    #infor{
+    	width: 400px;
+      float: left;
+
+    }
+
+    select {
+	width: 400px;
+	height: 30px;
+	margin-top: 15px;
+	margin-bottom: 35px;
+	border: 0px;
+  color: gray;
+	border-radius: 2px;
+	outline: none;
+	background-color: white;
+
+}
+
+  </style>
+
+</head>
+
+<body>
+
+      <header>
+
+        <div class="containerHeader">
+
+
+          <div class="home">
+
+      <a href="homeAdministrador.html"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
+          </div>
+          <nav class="menu">
+            <ul class="clearfix">
+
+              <li>
+                <a href="#">Registrar usuarios <span class="arrow">&#9660;</span></a>
+
+                <ul class="sub-menu">
+                  <li><a href="registrarAsistente.html">Registrar asistente</a></li>
+                  <li><a href="ingresarProfesor.html">Registrar profesor</a></li>
+                  <li><a href="ingresarAlumno.html">Registrar alumno</a></li>
+                </ul>
+              </li>
+
+              <li>
+                <a href="#">Registrar eventos <span class="arrow">&#9660;</span></a>
+
+                <ul class="sub-menu">
+                  <li><a href="ingresarTorneo.html">Registrar torneo</a></li>
+                  <li><a href="ingresarFogueo.html">Registrar fogueo</a></li>
+                  <li><a href="ingresarExhibicion.html">Registrar exhibición</a></li>
+                </ul>
+              </li>
+              <li><a href="ingresarAcademia.html">Registrar academia</a></li>
+              <li><a href="indexLugar.html  ">Registrar lugar</a></li>
+              <li class="current-item"><a href="indexOrganizacion.html">Registrar organización</a></li>
+              <li><a href="ingresarPatrocinador.html">Registrar patrocinador</a></li>
+
+              <li>
+                <a href="#">Listar <span class="arrow">&#9660;</span></a>
+
+                <ul class="sub-menu">
+                    <li><a href="listarAsistente.html">Listar asistentes</a></li>
+                  <li><a href="listarProfesor.html">Listar profesores</a></li>
+                  <li><a href="listarAlumno.html">Listar alumnos</a></li>
+                  <li><a href="listarLug.html">Listar lugares</a></li>
+                  <li><a href="listarOrg.html">Listar organizaciones</a></li>
+                  <li><a href="listarPatrocinador.html">Listar patrocinadores</a></li>
+                  <li><a href="listarAcademia.html">Listar academias</a></li>
+                  <li><a href="listarTorneo.html">Listar Torneos</a></li>
+                  <li><a href="listarExhibicion.html">Listar Exhibiciones</a></li>
+                  <li><a href="listarFogueo.html">Listar Fogueos</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+      </header>
+  <main>
+    <section>
+
+      <div class="container">
+        <h1 id="h2Titulo">Registar lugar</h1>
+        <div class="container1">
+          <form class="form">
+            <div class="nombreLugar">
+              <label class="txtLugar">Nombre del lugar </label><br>
+              <input type="text" id="txtLugar"><br>
+            </div>
+            <div class="txtNomEncargado">
+              <label class="txtNomEncar"> Nombre del encargado  </label>
+              <input type="text" id="txtNomEncar">
+            </div>
+
+            <div class="txtTCpacid">
+              <label class="txtCapacid">Capacidad del lugar  </label>
+              <input type="Number" id="txtCapacid">
+            </div>
+            <div class="txtTCorreo">
+              <label class="txtTCorreo">Correo </label>
+              <input type="text" id="txtCorreo">
+
+            </div>
+            <!-- <div id="map" style="width:520px; height: 200px;  "></div> -->
+        </div>
+
+        <div class="container2">
+          <form class="form">
+            <div class="telefono">
+              <label class="txtTelef">Teléfono</label>
+              <input type="Number" id="txtTelef">
+            </div>
+
+            <div class="direccion">
+              <label class="txtDirec">Dirección</label><br>
+              <TEXTAREA id="txtDirec" COLS=70 ROWS=10 NAME="Texto">  </TEXTAREA>
+            </div>
+</form>
+    </div>
+
+<!-- todoo LO DEL MAPA  -->
+<div id="mapa">
+  <h2>Aquí ira el mapa!</h2>
+</div>
+
+<div id="infor">
+  <div class="accordion" id="accordion2">
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                      Mapa
+                    </a>
+      </div>
+      <div id="collapseOne" class="accordion-body collapse in">
+        <div class="accordion-inner">
+          <form id="formulario">
+            <table>
+              <!-- <tr>
+                <td>Título</td>
+                <td><input type="text" class="form-control" id="titulo" name="titulo" autocomplete="off" /></td>
+              </tr> -->
+              <tr>
+                <td>Coordenada X</td>
+                <td><input type="text" class="form-control" id="cx" readonly name="cx" autocomplete="off" /></td>
+              </tr>
+              <tr>
+                <td>Coordenada Y</td>
+                <td><input type="text" class="form-control" id="cy" readonly name="cy" autocomplete="off" /></td>
+              </tr>
+              <!-- Aqui estar� se colocaran los mensajes para el usuario -->
+              <tr>
+                <td></td>
+                <td><span id="loader_grabar" class=""></span></td>
+              </tr>
+              <!-- <tr>
+                <td><button type="button" id="btn_grabar" class="btn btn-success btn-sm">Guardar</button></td>
+                <td><button type="button" class="btn btn-danger btn-sm">Cancelar</button></td>
+              </tr> -->
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                      Buscar lugar registrado
+                    </a>
+      </div>
+      <div id="collapseThree" class="accordion-body collapse">
+        <div class="accordion-inner">
+          <form id="formulario_buscar">
+            <table>
+              <TR>
+                <td>
+
+                  <input type="text" id="palabra_buscar" id="buscar" class="form-control" autocomplete="off" />
+                </td>
+                <td>
+                  <button type="button" id="btn_buscar" class="btn btn-success btn-sm">Buscar</button>
+                </td>
+              </TR>
+
+              <TR>
+                <td>
+                  <select id="select_resultados">
+                                <option id="seleLug" value="uno">---Seleccione un lugar---</option>
+                              </select>
+                </td>
+                <td></td>
+              </TR>
+
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+  </div>
+  <div class="container1">
+
+
+
+  </div>
+
+
+      <div class="cf"></div>
+
+
+      <div class="container4">
+        <form class="btnRegistraLug">
+          <input type="button" id="btnRegistraLug" value="Guardar">
+          <br>
+
+        </form>
+
+      </div>
+
+
+
+    </section>
+
+
+  </main>
+
+  <script src="js/verificacionSesiones.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script src="js/logicaGeneral_mapa1.js"></script>
+  <script src="js/logicaNegociosLugar.js"></script>
+  <script type="text/javascript" src="lib/alertify.js"></script>
+  <script src="js/logicaInterfazLugar.js"></script>
+</body>
+
+</html>

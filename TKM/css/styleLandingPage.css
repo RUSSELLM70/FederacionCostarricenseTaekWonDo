@@ -1,0 +1,860 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body{
+	background-color: #f7f7f7;
+}
+
+a{
+	text-decoration: none;
+}
+
+p{
+	font-size: 14px;
+	text-align: center;text-align: justify;
+	margin-top: 15px;
+	margin-bottom: 70px;
+
+}
+
+h2{
+	font-size: 36px;
+	text-align: center;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+h3{
+	text-align: center;
+	font-size: 26px;
+}
+
+h4{
+	font-size: 26px;
+	margin-bottom: 30px;
+}
+
+.cf{
+	clear: both;
+}
+
+.container{
+	width: 90%;
+	margin: 0 auto;
+	background: none;
+	/*border: solid 1px black;*/
+}
+
+
+header{
+	width: 100%;
+	height: 80px;
+	padding-top: 15px;
+	background-color: #191919;
+	border-bottom: solid 4px #66b0cd;
+}
+
+header img{
+	width: 8%;
+	height: 100px;
+	float: left;
+}
+
+.inicio{
+	float: right;
+}
+
+header i{
+	margin-left: 79%;
+}
+
+.menuSesion{
+	background-color: #66b0cd;
+	padding: 3px 10px;
+	color: white;
+	margin-top: 13px;
+	border-radius: 3px;
+	padding-bottom: px;
+}
+
+.menuSesion:hover{
+	color: #000;
+}
+
+/*Inicio menu navegación*//*----------------------------------*/
+.clearfix:after {
+    display:block;
+    clear:both;
+}
+
+.menu{
+	float: left;
+}
+
+.menu i{
+	font-size: 28px;
+}
+
+/*----- Menu Outline -----*/
+
+
+.menu li {
+    margin:0px;
+    list-style:none;
+}
+
+.menu a:hover {
+ color: #cdd1d2;
+}
+
+.menu a {
+   /* transition:all linear 0.15s;*/
+   color: white;
+}
+
+.arrow{
+	width: 10px;
+}
+
+.menu .arrow {
+    font-size:11px;
+    line-height:0%;
+}
+
+/*----- Top Level -----*/
+.menu > ul > li {
+    float:left;
+    display:inline-block;
+    position:relative;
+    font-size:16px;
+}
+
+.menu > ul > li > a {
+    padding:10px 25px;
+    display:inline-block;
+
+}
+
+/*.menu > ul > li:hover > a, .menu > ul > .current-item > a {
+    background:#2e2728;
+}*/
+
+/*----- Bottom Level -----*/
+.menu li:hover .sub-menu {
+    z-index:1;
+    opacity:1;
+}
+
+.sub-menu {
+    width:300px;
+    padding:5px 0px;
+    position:absolute;
+    top:100%;
+    left:0px;
+    z-index:-1;
+    opacity:0;
+    transition:opacity linear 0.15s;
+    box-shadow:0px 2px 3px rgba(0,0,0,0.2);
+    background:#191919;
+
+}
+
+.sub-menu li {
+    display:block;
+    font-size:13px;
+    color: black;
+}
+
+.sub-menu li a {
+    padding:10px 30px;
+    display:block;
+}
+
+.sub-menu li a:hover, .sub-menu .current-item a {
+    background:#cdd1d2;
+    color: black;
+}
+
+/*Fin menu navegación*//*----------------------------------*/
+
+
+.mainSect{
+	background-color: #212b35;
+	height: 700px;
+	width: 100%;
+/*	background-image: url('../img/foton.jpg');*/
+	/*border-top: solid 7px #ff9030;*/
+	margin-bottom: 200px;
+}
+
+.mainSect img{
+	width: 100%;
+	height: 900px;
+	/*background-color: rgba(211, 211, 211, 0.9);*/
+}
+
+/*Inicio Animacion banner*//*------------------------------------------------------------*/
+.content-img{
+    width: 100%;
+    height: 900px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.content-img img{
+    width: 100%;
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+}
+
+.content-1{
+  /*  width: 1000px; asi estaba y aparecia el borde*/
+  /*width: 100px;  se implementa de esta medida para desaparecer el borde azul*/
+    width: 100px;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    background: rgba(102,176,205,0.5);
+    -webkit-transform: rotate(-30deg);
+    transform: rotate(-30deg);
+    margin-left: -750px;
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+}
+
+.content-2{
+  /*  width: 1000px; asi estaba y aparecia el borde*/
+  /*width: 100px;  se implementa de esta medida para desaparecer el borde azul*/
+    width: 100px;
+    height: 1000px;
+    position: absolute;
+    top: 0;
+    background: rgba(102,176,205,0.5);
+    -webkit-transform: rotate(-30deg);
+    transform: rotate(-30deg);
+    margin-left: -800px;
+    -webkit-transition: all 500ms;
+    transition: all 500ms;
+}
+
+.content-3{
+  /*  width: 1000px; asi estaba y aparecia el borde*/
+  /*width: 100px;  se implementa de esta medida para desaparecer el borde azul*/
+    width: 100px;
+    height: 1000px;
+    position: absolute;
+    top: 0;
+    background: rgba(102,176,205,0.5);
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+    margin-left: -800px;
+    margin-top: -500px;
+    -webkit-transition: all 900ms;
+    transition: all 900ms;
+    -webkit-box-shadow: 0px 1px 20px -5px black;
+    box-shadow: 0px 1px 20px -5px black;
+}
+
+.content-4{
+  /*  width: 1000px; asi estaba y aparecia el borde*/
+  /*width: 100px;  se implementa de esta medida para desaparecer el borde azul*/
+    width: 100px;
+    height: 1000px;
+    position: absolute;
+    top: 0;
+    background: rgba(102,176,205,0.5);
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+    margin-left: -850px;
+    margin-top: -500px;
+    -webkit-transition: all 700ms;
+    transition: all 700ms;
+}
+
+.content-img:hover .content-1{
+    width: 100%;
+    -webkit-transition: all 900ms;
+    transition: all 900ms;
+}
+
+.content-img:hover .content-2{
+    width: 100%;
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+}
+
+.content-img:hover .content-3{
+    width: 100%;
+    -webkit-transition: all 500ms;
+    transition: all 500ms;
+}
+
+.content-img:hover .content-4{
+    width: 100%;
+    -webkit-transition: all 700ms;
+    transition: all 700ms;
+}
+
+.content-img:hover img{
+   /* -webkit-transform: scale(1.5);*/
+    /*transform: scale(1.5);*/
+    /*-webkit-transition: all 300ms;
+    transition: all 300ms;
+    opacity: ;*/
+}
+
+.content-txt{
+    position: absolute;
+    top: 0;
+    width: 400px;
+    padding: 10px;
+    z-index: 10;
+    color: white;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.content-txt h1{
+    font-size: 42px;
+    opacity: 0;
+    -webkit-transform: scale(0.2);
+    transform: scale(0.2);
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+    color: white;
+}
+
+.content-txt img{
+    font-size: 20px;
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;
+    opacity: 0;
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+}
+
+.content-img:hover h1{
+    opacity: 1;
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.content-img:hover p{
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: all 500ms;
+    transition: all 500ms;
+}
+/*Fin Animacion banner*//*------------------------------------------------------------*/
+
+
+.tituloEventos{
+	width: 100%
+	height:200px;
+	background-color: #191919;
+	color: white;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.tituloPatro{
+	width: 100%
+	height:200px;
+	background-color: #191919;
+	color: white;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.tituloOrg{
+	width: 100%
+	height:200px;
+	background-color: #191919;
+	color: white;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	text-align: center;
+	margin-top:%;
+}
+
+
+.sectEventos{
+	margin-left: 6%;
+	height: 100px;
+}
+
+.contEventos{
+	width: 27%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #dddddd;
+	float: left;
+	margin-right: 6%;
+	margin-top: 8%;
+	text-align: center;
+	padding: 14px 20px;
+	margin-bottom: 10%;
+	/*position: relative;
+	bottom: 350px;*/
+	border-radius: 5px;
+	box-shadow: 1px 1px 1px 1px #bcbcbc;
+	opacity: 0.9;
+	border: solid 1px lightgray;
+}
+
+
+.contEventos h3,h5,p{
+	opacity: inherit;
+
+}
+
+
+.contEventos:last-child{
+margin-right:0%;
+}
+
+.iconoEvento{
+	background-color: #efefef;
+	width: 60%;
+	height: 170px;
+	border-radius: 360px;
+	padding-top: 35px;
+	border: solid 3px #325868;
+	margin-left: 53px;
+	margin-bottom: 20px;
+}
+
+.iconoEvento i{
+	margin-bottom:14px;
+	margin-top:10px;
+/*	color: #515151;*/
+}
+
+
+.iconoEvento img{
+	width: 60px;
+	height: 63px;
+	margin-bottom:14px;
+	margin-top:10px;
+}
+
+
+.info{
+	margin-bottom: 20px;
+	margin-top: 40px;
+}
+
+.info h5{
+	text-align: left;
+	margin-top: 7px;
+}
+
+.info a{
+	background-color: #325868;
+	padding:3% 10%;
+	border-radius: 2px;
+	text-decoration: none;
+	color: white;
+	box-shadow: 1px 0px 5px 0px #dbdbdb;
+	margin-top: 100px;
+}
+
+.noticias{
+	height: 650px;
+	width: 100%;
+	background-color: gray;
+	margin-bottom: 10%;
+	margin-top: 8%;
+}
+
+.pt{
+	background-color: white;
+}
+
+.patro{
+	width: 25%;
+	height: 200px;
+	/*background-color: lightgray;*/
+	float: left;
+	margin-right: 1%;
+	margin-bottom: 5%;
+	text-align: center;
+}
+
+.patro1{
+	width: 25%;
+	height: 200px;
+	float: left;
+	margin-right: 1%;
+	margin-bottom: 1%;
+	text-align: center;
+}
+
+.patro3{
+	width: 25%;
+	height: 200px;
+	float: left;
+	margin-right: 1%;
+	margin-bottom: 1%;
+	text-align: center;
+}
+
+.patro4{
+	width: 25%;
+	height: 200px;
+	float: left;
+	margin-right: 1%;
+	margin-bottom: 1%;
+	text-align: center;
+}
+
+.patro5{
+	width: 25%;
+	height: 200px;
+	float: left;
+	margin-right: 1%;
+	margin-bottom: 1%;
+	text-align: center;
+}
+
+.patro img{
+	width: 190px;
+	height: 190px;
+}
+
+
+.patro1 img{
+	width: 170px;
+	height: 170px;
+}
+
+.patro3 img{
+	width: 190px;
+	height: 150px;
+}
+
+.patro4 img{
+	width: 230px;
+	height: 150px;
+}
+
+.patro5 img{
+	width: 260px;
+	height: 190px;
+}
+
+.patrocinadores{
+	margin-left:17%;
+	margin-top:8%;
+	margin-bottom:8%;
+}
+
+/*inicio slider*//*---------------------------------------------------*/
+.nivoSlider {
+	position:relative;
+	width:100%;
+	height:auto;
+	overflow: hidden;
+}
+.nivoSlider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	max-width: none;
+}
+.nivo-main-image {
+	display: block !important;
+	position: relative !important;
+	width: 100% !important;
+}
+
+/* If an image is wrapped in a link */
+.nivoSlider a.nivo-imageLink {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	border:0;
+	padding:0;
+	margin:0;
+	z-index:6;
+	display:none;
+	background:white;
+	filter:alpha(opacity=0);
+	opacity:0;
+}
+/* The slices and boxes in the Slider */
+.nivo-slice {
+	display:block;
+	position:absolute;
+	z-index:5;
+	height:100%;
+	top:0;
+}
+.nivo-box {
+	display:block;
+	position:absolute;
+	z-index:5;
+	overflow:hidden;
+}
+.nivo-box img { display:block; }
+
+/* Caption styles */
+.nivo-caption {
+	position:absolute;
+	top: 40%;
+	left:0px;
+	bottom:0px;
+	font-family: sans-serif;
+	text-align: center;
+	color:#fff;
+	width:100%;
+	z-index:8;
+	padding: 5px 10px;
+	overflow: hidden;
+	display: none;
+}
+.nivo-caption p {
+	padding:5px;
+	margin:0;
+}
+.nivo-caption a {
+	display:inline !important;
+}
+.nivo-html-caption {
+    display:none;
+}
+/* Direction nav styles (e.g. Next & Prev) */
+.nivo-directionNav a {
+	position:absolute;
+	top:45%;
+	z-index:9;
+	cursor:pointer;
+}
+.nivo-prevNav {
+	left:0px;
+}
+.nivo-nextNav {
+	right:0px;
+}
+/* Control nav styles (e.g. 1,2,3...) */
+/*.nivo-controlNav {
+	text-align:center;
+	padding: 15px 0;
+}
+.nivo-controlNav a {
+	cursor:pointer;
+}
+.nivo-controlNav a.active {
+	font-weight:bold;
+}*/
+
+
+*{
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/*==========================*/
+
+.theme-mi-slider .nivoSlider{
+	position:relative;
+}
+
+.theme-mi-slider .nivoSlider a {
+	border:0;
+	display:block;
+}
+
+/* Nivo Pagination =========================*/
+
+.nivo-controlNav{
+	display: flex;
+	justify-content: center;
+}
+
+.theme-mi-slider .nivo-control{
+	display: block;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background: #545454;
+	margin: 3px;
+	text-indent: -9999px
+}
+
+.theme-mi-slider .nivo-control:hover{
+	background: #1B1B1B;
+}
+
+.theme-mi-slider .active{
+	background: #1B1B1B;
+}
+
+/* Nivo direction ============*/
+.nivo-directionNav a{
+	display: block;
+	width: 30px;
+	height: 30px;
+}
+
+.nivo-directionNav .nivo-prevNav{
+	background-image: url(../img/icons/circle-left.png);
+	background-size: cover;
+	text-indent: -9999px;
+	left: 6px;
+}
+
+.nivo-directionNav .nivo-nextNav{
+	background-image: url(../img/icons/circle-right.png);
+	background-size: cover;
+	text-indent: -9999px;
+	right: 6px;
+}
+
+
+/*Nivo Caption*/
+
+.nivo-html-caption{
+	position: absolute;
+}
+
+
+/*fin slider*//*---------------------------------------------------*/
+
+.organizaciones{
+	margin-left: 15%;
+}
+
+.org{
+	width: 20%;
+	height: 200px;
+	float: left;
+	margin-right: 10%;
+	margin-bottom: 1%;
+	margin-top:10%;
+	margin-bottom:10%;
+}
+
+.org1{
+	width: 20%;
+	height: 200px;
+	float: left;
+	margin-right: 10%;
+	margin-bottom: 1%;
+	margin-top:10%;
+	margin-bottom:10%;
+}
+
+.org2{
+	width: 20%;
+	height: 200px;
+	float: left;
+	margin-right: 1%;
+	margin-bottom: 1%;
+	margin-top:10%;
+	margin-bottom:10%;
+}
+
+.org img{
+	width: 230px;
+	height: 160px;
+}
+
+.org1 img{
+	width: 210px;
+	height: 170px;
+}
+
+.org2 img{
+	width: 210px;
+	height: 150px;
+}
+
+.direccion{
+	width: 30%;
+	color: white;
+	padding-top: 75px;
+	float: left;
+}
+
+.mapa{
+	width: 40%;
+	color: white;
+	padding-top: 70px;
+	float: right;
+	opacity: 0.9;
+}
+
+
+ul{
+	list-style-type: none;
+}
+
+.direccion span{
+	font-weight: bold;
+	font-size: 16px;
+	margin-right: 5px;
+}
+
+.direccion li{
+margin-bottom: 15px;
+}
+
+footer{
+	height: 350px;
+	width: 100%;
+	background-color: #191919;
+	border-bottom: solid 1px lightgray;
+}
+
+.footer2{
+	width: 100%;
+	background-color: #191919;
+	height: 50px;
+}
+
+
+.copy{
+	float: left;
+	margin-top: 17px;
+	color: white;
+	font-size: 12px;
+}
+
+.template{
+	margin-top: 17px;
+	float: right;
+	color: white;
+	font-size: 12px;
+}
